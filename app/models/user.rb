@@ -34,4 +34,13 @@ class User < ApplicationRecord
         self.follower_ids.size
     end
 
+    def count_picture
+        Picture.where("pictureable_id = :id AND pictureable_type= :type",
+                        {id: self.id, type: "User"}).size
+    end
+
+    def count_album
+        Album.where("user_id = :id", { id: self.id }).size
+    end
+
 end
