@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_02_091519) do
+ActiveRecord::Schema.define(version: 2018_07_06_072312) do
 
   create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "title"
@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(version: 2018_07_02_091519) do
     t.string "sharing_mode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "picture_id"
-    t.index ["picture_id"], name: "index_albums_on_picture_id"
+    t.integer "user_id"
   end
 
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -30,13 +29,28 @@ ActiveRecord::Schema.define(version: 2018_07_02_091519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "likes"
+    t.integer "pictureable_id"
+    t.string "pictureable_type"
+    t.index ["pictureable_id", "pictureable_type"], name: "index_pictures_on_pictureable_id_and_pictureable_type"
   end
 
-  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "user_followings", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_user_followings_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_user_followings_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_user_followings_on_follower_id"
+  end
+
+  create_table "user_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "picture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_likes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -47,10 +61,6 @@ ActiveRecord::Schema.define(version: 2018_07_02_091519) do
     t.string "avatar_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "album_id"
-    t.index ["album_id"], name: "index_users_on_album_id"
   end
 
-  add_foreign_key "albums", "pictures"
-  add_foreign_key "users", "albums"
 end
