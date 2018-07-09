@@ -111,6 +111,54 @@ Album.create!([
         description: "nice",
         sharing_mode: "public",
         user_id: 4
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 3
+    },
+    {
+        title: "album5",
+        description: "nice",
+        sharing_mode: "public",
+        user_id: 4
     }
 ])
 # User.destroy_all
