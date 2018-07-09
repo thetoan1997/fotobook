@@ -15,4 +15,8 @@ class Picture < ApplicationRecord
         end
     end
 
+    def get_date_picture
+        puts self.updated_at.to_formatted_s(:short)
+    end
+
 end
