@@ -4,7 +4,7 @@ class CreatePictures < ActiveRecord::Migration[5.2]
       t.string :picture_link
       t.string :title
       t.string :description
-      t.string :sharing_mode
+      t.boolean :private, default: false
 
       t.timestamps
     end
