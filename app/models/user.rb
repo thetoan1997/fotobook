@@ -43,4 +43,48 @@ class User < ApplicationRecord
         Album.where("user_id = :id", { id: self.id }).size
     end
 
+    def do_not_like(id_picture)
+        UserLike.where(user_id: self.id, picture_id: id_picture).delete_all
+    end
+
+    def do_like(id_picture) 
+        if UserLike.exists?(user_id: self.id, picture_id: id_picture)
+            do_not_like(id_picture)
+        else
+        UserLike.create(user_id: self.id, picture_id: id_picture)
+        end
+    end
+
+    def get_pictures
+        Picture.where("pictureable_id = :id AND pictureable_type= :type",
+                        {id: self.id, type: "User"})
+    end
+
+    def get_albums
+        Album.where("user_id = :id", {id: self.id})
+    end
+
+    def get_pictures_recently_discover
+        Picture.order('updated_at desc').limit(5)
+    end
+
+    def get_albums_recently_discover
+        Album.order('updated_at desc').limit(5)
+    end
+
+    $user_following = Array.new
+    def get_albums_recently_feeds
+        self.following_ids.each do |usr|
+            $user_following.push(usr)
+        end
+        Album.where(user_id: $user_following).order('updated_at desc').limit(5)
+    end
+
+    def get_pictures_recently_feeds
+        self.following_ids.each do |usr|
+            $user_following.push(usr)
+        end
+        Picture.where(pictureable_id: $user_following, pictureable_type: "User").order('updated_at desc').limit(5)
+    end
+
 end
