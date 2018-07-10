@@ -11,7 +11,7 @@
 #             picture_link: "#",
 #             title: "pic2user",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 2,
 #             pictureable_type: "User"
 #     },
@@ -19,7 +19,7 @@
 #             picture_link: "#",
 #             title: "pic1album",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 1,
 #             pictureable_type: "Album"
 #     },
@@ -27,7 +27,7 @@
 #             picture_link: "#",
 #             title: "pic2album",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 2,
 #             pictureable_type: "Album"
 #     },
@@ -35,7 +35,7 @@
 #             picture_link: "#",
 #             title: "pic2user",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 3,
 #             pictureable_type: "User"
 #     },
@@ -43,7 +43,7 @@
 #             picture_link: "#",
 #             title: "pic3user",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 3,
 #             pictureable_type: "User"
 #     },
@@ -51,7 +51,7 @@
 #             picture_link: "#",
 #             title: "pic3album",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 2,
 #             pictureable_type: "Album"
 #     },
@@ -59,7 +59,7 @@
 #             picture_link: "#",
 #             title: "pic2user",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 2,
 #             pictureable_type: "Album"
 #     },
@@ -67,7 +67,7 @@
 #             picture_link: "#",
 #             title: "pic2user",
 #             description: "nice",
-#             sharing_mode: "public",
+#             private: false,
 #             pictureable_id: 5,
 #             pictureable_type: "User"
 #     }

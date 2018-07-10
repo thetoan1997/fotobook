@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
     has_many :pictures, as: :pictureable
 
+    has_many :likes
+
     has_many :active_user_followings, class_name: "UserFollowing", 
                                     foreign_key: "follower_id", 
                                     dependent: :destroy

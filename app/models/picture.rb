@@ -1,7 +1,7 @@
 class Picture < ApplicationRecord
     belongs_to :pictureable, polymorphic: true
 
-    has_many :user_likes
+    has_many :likes, as: :likeable
 
     def count_like
         self.user_likes.size

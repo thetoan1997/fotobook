@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 2018_07_09_122036) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "picture_id"
-    t.index ["picture_id"], name: "index_albums_on_picture_id"
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
@@ -65,10 +63,6 @@ ActiveRecord::Schema.define(version: 2018_07_09_122036) do
     t.string "avatar_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "album_id"
-    t.index ["album_id"], name: "index_users_on_album_id"
   end
 
-  add_foreign_key "albums", "pictures"
-  add_foreign_key "users", "albums"
 end
