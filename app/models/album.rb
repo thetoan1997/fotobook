@@ -1,7 +1,7 @@
 class Album < ApplicationRecord
     belongs_to :user, optional: true
 
-    has_many :pictures, as: :pictureable
+    has_many :images, as: :imageable
 
     has_many :likes, as: :likeable
     

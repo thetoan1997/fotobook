@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_many :albums
 
-    has_many :pictures, as: :pictureable
+    has_many :photos
 
     has_many :likes
 
@@ -28,7 +28,7 @@ class User < ApplicationRecord
         following.include?(other_user)
     end
 
-    def count_following
+    def count_following 
         self.following_ids.size
     end
 
@@ -45,15 +45,15 @@ class User < ApplicationRecord
         Album.where("user_id = :id", { id: self.id }).size
     end
 
-    def do_not_like(id_picture)
-        UserLike.where(user_id: self.id, picture_id: id_picture).delete_all
+    def do_not_like(type, id)
+        Like.where(user_id: self.id, likeable_type: type, likeable_id: id).delete_all
     end
 
-    def do_like(id_picture) 
-        if UserLike.exists?(user_id: self.id, picture_id: id_picture)
-            do_not_like(id_picture)
+    def do_like(type, id) 
+        if Like.exists?(user_id: self.id, likeable_type: type, likeable_id: id)
+            do_not_like(type, id)
         else
-        UserLike.create(user_id: self.id, picture_id: id_picture)
+            Like.create(user_id: self.id, likeable_type: type, likeable_id: id)
         end
     end
 
