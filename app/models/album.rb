@@ -5,8 +5,8 @@ class Album < ApplicationRecord
 
     has_many :likes, as: :likeable
     
-    def count_picture
-        Picture.where("pictureable_id = :id AND pictureable_type= :type",
+    def count_image
+        Image.where("imageable_id = :id AND imageable_type= :type",
                         {id: self.id, type: "Album"}).size
     end
 end

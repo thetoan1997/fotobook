@@ -8,7 +8,7 @@ class User < ApplicationRecord
     has_many :active_user_followings, class_name: "UserFollowing", 
                                     foreign_key: "follower_id", 
                                     dependent: :destroy
-    has_many :following, through: :active_user_followings, source: :followed
+    has_many :followings, through: :active_user_followings, source: :followed
 
     has_many :passive_user_followings, class_name: "UserFollowing",
                                     foreign_key: "followed_id",
@@ -17,28 +17,27 @@ class User < ApplicationRecord
 
 
     def follow(other_user)
-        following << other_user
+        followings << other_user
     end
 
     def unfollow(other_user)
-        following.delete(other_user)
+        followings.delete(other_user)
     end
 
     def is_following?(other_user)
-        following.include?(other_user)
+        followings.include?(other_user)
     end
 
     def count_following 
-        self.following_ids.size
+        self.followings.size
     end
 
     def count_followed
-        self.follower_ids.size
+        self.followers.size
     end
 
-    def count_picture
-        Picture.where("pictureable_id = :id AND pictureable_type= :type",
-                        {id: self.id, type: "User"}).size
+    def count_photo
+        Photo.where("user_id = :id", { id: self.id }).size
     end
 
     def count_album
@@ -57,17 +56,16 @@ class User < ApplicationRecord
         end
     end
 
-    def get_pictures
-        Picture.where("pictureable_id = :id AND pictureable_type= :type",
-                        {id: self.id, type: "User"})
+    def get_photos
+        Photo.where("user_id = :id", {id: self.id})
     end
 
     def get_albums
         Album.where("user_id = :id", {id: self.id})
     end
 
-    def get_pictures_recently_discover
-        Picture.order('updated_at desc').limit(5)
+    def get_photos_recently_discover
+        Photo.order('updated_at desc').limit(5)
     end
 
     def get_albums_recently_discover
@@ -82,11 +80,18 @@ class User < ApplicationRecord
         Album.where(user_id: $user_following).order('updated_at desc').limit(5)
     end
 
-    def get_pictures_recently_feeds
+    def get_photos_recently_feeds
         self.following_ids.each do |usr|
             $user_following.push(usr)
         end
-        Picture.where(pictureable_id: $user_following, pictureable_type: "User").order('updated_at desc').limit(5)
+        Photo.where(user_id: $user_following).order('updated_at desc').limit(5)
     end
 
+    def get_albums_of_user_following(user_id)
+        Album.where(user_id: user_id, private: false).order('updated_at desc').limit(5)
+    end
+
+    def get_photos_of_user_following(user_id)
+        Photo.where(user_id: user_id, private: false).order('updated_at desc').limit(5)
+    end
 end
