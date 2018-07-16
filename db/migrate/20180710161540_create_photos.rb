@@ -1,12 +1,12 @@
-class CreateAlbums < ActiveRecord::Migration[5.2]
+class CreatePhotos < ActiveRecord::Migration[5.2]
   def change
-    create_table :albums do |t|
+    create_table :photos do |t|
       t.string :title
       t.text :description
       t.boolean :private, default: false
-      t.integer :user_id
+      t.belongs_to :user
+
       t.timestamps
     end
-    add_index :albums, :user_id
   end
 end

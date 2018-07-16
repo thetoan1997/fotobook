@@ -1,0 +1,61 @@
+.header{
+    height: 42px;
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: #3C5999 !important;
+    color: #fff;
+    height: 42px;
+    min-height: 42px !important;
+}
+.navbar .container-fluid{
+    padding: 0 80px;
+    height: 42px;
+}
+.navbar .navbar-header{
+    height: 100%;
+}
+.navbar li a, .navbar .navbar-brand { 
+    color: #fff !important;
+    padding: 0;
+    height: auto;
+}
+.navbar .navbar-brand{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar-nav{
+    margin: 11px 0;
+}
+
+.navbar-nav li a:hover {
+    color: #fff !important;
+}
+.navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #29292c !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+.navbar-collapse .navbar-form{
+   margin: 4px 0;
+}
+.navbar-collapse .input-group{
+    width: 100%;
+}
+.navbar-collapse .input-group .form-control{
+    border-radius: 3px;
+}
+.open .dropdown-toggle {
+    color: #fff;
+    background-color: #555 !important;
+}
+.dropdown-menu li a {
+    color: #000 !important;
+}
+.dropdown-menu li a:hover {
+    background-color: red !important;
+}

@@ -1,0 +1,24 @@
+<h1>This is index in photos view</h1>
+<h3>PHOTOS</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Sharing Mode</th>
+    </tr>
+    <% @photos.each do |photo| %>
+    <tr>
+        <td><%= photo.id %></td>
+        <td><%= photo.title %></td>
+        <td><%= photo.description %></td>
+        <td><%= photo.private %></td>
+    </tr>
+    <% end %>  
+
+</table>
+
+<p><%= @photo_of_user.pluck(:id)[0] %></p>
+
+<%= render @photos %>
+

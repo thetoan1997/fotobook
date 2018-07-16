@@ -1,0 +1,90 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container{
+    width: 100% !important;
+    background-color: #f8f8f8;
+    .content{
+        .option-content{
+            background-color: #f8f8f8;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .main-content{
+            height: 1000px;
+            margin-top: 20px; 
+            background-color: #ffffff;
+            .option-photo-album{
+                margin: 20px;
+                text-align: center;
+                
+            }
+            .content-post-photos, .content-post-albums{
+                margin: 0;
+                .content-post-part{
+                    padding: 10px;
+                    .this-post{
+                        border: 1px solid black;
+                        border-radius: 3px;
+                        background-color: #f8f8f8;
+                        max-width: 555px;
+                        .this-post-row{
+                            height: 100%;
+                            margin: 0;
+                            .this-post-picture{
+                                height: 100%;
+                                // width: 60%;
+                                padding: 0;
+                                img{
+                                    object-fit: cover;
+                                    width:255px;
+                                    height:255px;
+                                    // overflow: hidden;
+                                }
+                            }
+                            .this-post-info{
+                                .user-of-post{
+                                    .avatar-user{
+                                        width: 30px;
+                                        height: 30px;
+                                        border-radius: 50%;
+                                        margin: 10px 0;    
+                                    }
+                                }
+                                .title-of-post{
+                                    margin: 8px 0; 
+                                }
+                                .content-of-post{
+
+                                }
+                                .like-time-of-post{
+                                    // padding-top: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .content-post-albums{
+                display: none;
+            }
+        }
+        .ads-content{
+            background-color: #f8f8f8;
+            height: 1000px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container .content .main-content .row1 .row1-part .this-post .this-post-row .this-post-picture img{
+        width: 100%;
+        height: 323px;
+    }
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
