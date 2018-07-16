@@ -1,0 +1,27 @@
+<div class="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+                </button>
+                <%= link_to "Fotobook", home_index_path, class: "navbar-brand" %>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><%= link_to "Diep Toan", user_path(2) %></li>
+                    <li><a href="#myPage">Logout</a></li>
+                </ul>
+                <div class="col-lg-6 col-sm-6">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
