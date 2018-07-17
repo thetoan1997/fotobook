@@ -1,0 +1,54 @@
+<p><%= t("hello.hello_world") %></p>
+<h3><%= flash[:notice] %></h3>
+<p><%= Time.now.strftime(t(".time_default")) %></p>
+<p><%= t".address" %></p>
+    <p><%= t"currency" '100' %></p>
+
+<div class="container">
+    <div class="row content">
+        <%= render partial: "option_feeds_discover" %>
+        <div class="col-sm-8 main-content-feeds">
+            <h3>FEEDS.</h3>
+            <div class="option-photo-album">
+                <button class="show-photos">PHOTO</button>
+                <button class="show-albums">ALBUM</button>    
+            </div>
+            <div class="content-post-photos row">
+                <% @photos_feeds.each do |photo| %>
+                    <%= render partial: "photos_post", locals: { photo: photo } %>
+                <% end %>
+            </div>
+
+            <div class="content-post-albums row">
+                <% @albums_feeds.each do |album| %>
+                    <%= render partial: "albums_post", locals: { album: album } %>
+                <% end %>
+            </div>
+
+        </div>
+
+        <div class="col-sm-8 main-content-discover">
+            <h3>DISCOVER.</h3>
+            <div class="option-photo-album">
+                <button class="show-photos">PHOTO</button>
+                <button class="show-albums">ALBUM</button>    
+            </div>
+            <div class="content-post-photos row">
+                <% @photos_discover.each do |photo| %>
+                    <%= render partial: "photos_post", locals: { photo: photo } %>
+                <% end %>
+            </div>
+
+            <div class="content-post-albums row">
+                <% @albums_discover.each do |album| %>
+                    <%= render partial: "albums_post", locals: { album: album } %>
+                <% end %>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2 ads-content">
+
+        </div>
+    </div>
+</div>

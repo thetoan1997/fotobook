@@ -7,12 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
                 </button>
-                <%= link_to "Fotobook", home_index_path, class: "navbar-brand" %>
+                <%= link_to "Fotobook", home_path(1), class: "navbar-brand" %>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><%= link_to "Diep Toan", user_path(2) %></li>
-                    <li><a href="#myPage">Logout</a></li>
+                    <li><%= link_to "Diep Toan ", user_path(2) %></li>
+                    <li><%= link_to "Log in", login_path %></li>
                 </ul>
                 <div class="col-lg-6 col-sm-6">
                     <form class="navbar-form" role="search">
