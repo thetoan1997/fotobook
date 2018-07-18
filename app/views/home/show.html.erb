@@ -15,13 +15,21 @@
             </div>
             <div class="content-post-photos row">
                 <% @photos_feeds.each do |photo| %>
-                    <%= render partial: "photos_post", locals: { photo: photo } %>
+                    <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
+                    <%= render partial: "modal_photo", 
+                            locals: { url: photo.image.image_url, 
+                                      title: photo.title, 
+                                      description: photo.description, 
+                                      id: "feeds"+photo.id.to_s } %>
                 <% end %>
             </div>
 
             <div class="content-post-albums row">
                 <% @albums_feeds.each do |album| %>
-                    <%= render partial: "albums_post", locals: { album: album } %>
+                    <%= render partial: "albums_post", locals: { album: album, type: "feeds" } %>
+                    <%= render partial: "modal_album", 
+                            locals: { url: album.images.pluck(:image_url), 
+                                      id: "feeds"+album.id.to_s } %>
                 <% end %>
             </div>
 
@@ -35,13 +43,21 @@
             </div>
             <div class="content-post-photos row">
                 <% @photos_discover.each do |photo| %>
-                    <%= render partial: "photos_post", locals: { photo: photo } %>
+                    <%= render partial: "photos_post", locals: { photo: photo, type: "discover" } %>
+                    <%= render partial: "modal_photo", 
+                            locals: { url: photo.image.image_url, 
+                                      title: photo.title, 
+                                      description: photo.description, 
+                                      id: "discover"+photo.id.to_s } %>
                 <% end %>
             </div>
 
             <div class="content-post-albums row">
                 <% @albums_discover.each do |album| %>
-                    <%= render partial: "albums_post", locals: { album: album } %>
+                    <%= render partial: "albums_post", locals: { album: album, type: "discover" } %>
+                    <%= render partial: "modal_album", 
+                            locals: { url: album.images.pluck(:image_url), 
+                                      id: "discover"+album.id.to_s } %>
                 <% end %>
             </div>
 
