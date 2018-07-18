@@ -1,7 +1,3 @@
-<h1>VIEWS/USERS/SHOW</h1>
-<% @photo_links.pluck(:image_url).each do |link| %>
-    <p><%= link %></p>
-<% end %>
 <div class="row">
     <%= render partial: "home/option_feeds_discover" %>
     <div class="col-sm-8 profile-user">
@@ -12,35 +8,24 @@
             <div class="col-sm-9 content-info-user-info">
                 <div class="follow"><span class="follow-span">follow</span></div>
                 <p class="name"><b><%= @user.username %></b></p>
-                <p class="account"><span><%= @count_photo %></span> PHOTOS  |  <span><%= @count_album %></span> <span class="albums">ALBUMS</span> | <span><%= @user.followings.size %></span> FOLLOWINGS | <span><%= @user.followers.size %></span> FOLLOWERS</p>
+                <p class="account"><span class="active" data-toggle="tab" href="#home-photos"><%= @user.photos.size %> PHOTOS</span> |  
+                                   <span data-toggle="tab" href="#menu-albums"><%= @user.albums.size %> ALBUMS</span> | 
+                                   <span data-toggle="tab" href="#menu-followings"><%= @user.followings.size %> FOLLOWINGS</span>| 
+                                   <span data-toggle="tab" href="#menu-followers"><%= @user.followers.size %> FOLLOWERS</span></p>
             </div>
         </div>
-        <div class="row album-user">
-            <% @images.each do |image| %>
-            <div class="col-lg-3 col-md-6">
-                <div class="pictures-in-user">
-                    <img class="picture-post" src=<%= image.image_url %>>
-                </div>
-                <p class="title-in-picture-user">image.imageable.title</p>
+        <div class="row album-user tab-content">
+            <div id="home-photos" class="tab-pane fade in active">
+                <%= render partial: "photos_user", locals: { images: @photos } %>
             </div>
-            <% end %>
-            <div class="col-lg-3 col-md-6">
-                <div class="pictures-in-user">
-                    <img class="picture-post" src="https://i.imgur.com/UQ7fiuh.jpg">
-                </div>
-                <p class="title-in-picture-user">Title</p>
+            <div id="menu-albums" class="tab-pane fade">
+                <%= render partial: "albums_user", locals: { albums: @albums } %>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="pictures-in-user">
-                    <img class="picture-post" src="https://i.imgur.com/UQ7fiuh.jpg">
-                </div>
-                <p class="title-in-picture-user">Title</p>
+            <div id="menu-followings" class="tab-pane fade">
+                <%= render partial: "followings_user", locals: { users: @user_followings } %>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="pictures-in-user">
-                    <img class="picture-post" src="https://i.imgur.com/UQ7fiuh.jpg">
-                </div>
-                <p class="title-in-picture-user">Title</p>
+            <div id="menu-followers" class="tab-pane fade">
+                <%= render partial: "followers_user", locals: { users: @user_followers } %>
             </div>
         </div>  
 

@@ -9,10 +9,7 @@
         <%= render partial: "option_feeds_discover" %>
         <div class="col-sm-8 main-content-feeds">
             <h3>FEEDS.</h3>
-            <div class="option-photo-album">
-                <button class="show-photos">PHOTO</button>
-                <button class="show-albums">ALBUM</button>    
-            </div>
+            <%= render partial: "option_photo_album" %>
             <div class="content-post-photos row">
                 <% @photos_feeds.each do |photo| %>
                     <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
@@ -37,10 +34,7 @@
 
         <div class="col-sm-8 main-content-discover">
             <h3>DISCOVER.</h3>
-            <div class="option-photo-album">
-                <button class="show-photos">PHOTO</button>
-                <button class="show-albums">ALBUM</button>    
-            </div>
+            <%= render partial: "option_photo_album" %>
             <div class="content-post-photos row">
                 <% @photos_discover.each do |photo| %>
                     <%= render partial: "photos_post", locals: { photo: photo, type: "discover" } %>

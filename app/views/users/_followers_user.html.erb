@@ -1,0 +1,24 @@
+<% users.each do |user| %>
+    <div class="col-lg-3 col-md-6 following-of-user">
+        <div class="user-following">
+            <div class="avatar-user-following">
+                <img class="avatar-user" src=<%= user.avatar_link %>>
+            </div>
+            <div class="username-user-following">
+                <span><%= user.username %></span>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 photos-user-following">
+                    <span><%= user.photos.size %></span><br>
+                    <span>PHOTOS</span>
+                </div>
+                <div class="col-sm-6 albums-user-following">
+                    <span><%= user.albums.size %></span><br>
+                    <span>ALBUMS</span>
+                </div>
+            </div>
+            <div class="follow"><span class="follow-span">follow</span></div>
+        </div>
+    </div>
+    <% end %>
+    
