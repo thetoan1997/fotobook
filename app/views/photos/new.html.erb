@@ -1,0 +1,37 @@
+<div class="container row">
+    <%= render partial: "home/option_feeds_discover" %>
+    <div class="col-sm-8 new-photo">
+        <div class="title-new-photo">
+            <h3>New Photo</h3>
+        </div>
+        <div class="row main-new-photo">
+            <div class="col-sm-6 title-mode-div">
+                <%= form_for(@photo) do |f| %>
+                    <%= f.label :title %>
+                    <%= f.text_field :title %>
+
+                    <%= f.label :description %>
+                    <%= f.text_area :description, size: "60x30" %>
+
+                    <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
+
+                    <%= f.hidden_field :user_id, value: 2 %>
+
+                    <%= f.fields_for :image do |p| %>
+                        <%= p.label :image_url %>
+                        <%= p.text_field :image_url %>
+                        <%= p.hidden_field :imageable_type, value: "Photo" %>
+                        <%= p.hidden_field :imageable_id, value: 2 %>
+                    <% end %>
+                    <%= f.submit "Save" %>
+                <% end %>
+            </div>
+            <div class="col-sm-6 description-div">
+                
+            </div>
+        </div>
+        <div class="upload-image">
+            
+        </div>
+    </div>    
+</div>

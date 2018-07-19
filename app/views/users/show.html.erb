@@ -1,4 +1,5 @@
-<div class="row">
+<p><%= flash[:notice] %></p>
+<div class="container row">
     <%= render partial: "home/option_feeds_discover" %>
     <div class="col-sm-8 profile-user">
         <div class="row info-user">
@@ -8,10 +9,14 @@
             <div class="col-sm-9 content-info-user-info">
                 <div class="follow"><span class="follow-span">follow</span></div>
                 <p class="name"><b><%= @user.username %></b></p>
-                <p class="account"><span class="active" data-toggle="tab" href="#home-photos"><%= @user.photos.size %> PHOTOS</span> |  
-                                   <span data-toggle="tab" href="#menu-albums"><%= @user.albums.size %> ALBUMS</span> | 
-                                   <span data-toggle="tab" href="#menu-followings"><%= @user.followings.size %> FOLLOWINGS</span>| 
-                                   <span data-toggle="tab" href="#menu-followers"><%= @user.followers.size %> FOLLOWERS</span></p>
+                <div class="account">
+                    <ul class="nav nav-tabs">   
+                        <li class="active"><a data-toggle="tab" href="#home-photos"><span class="count-in-user"><%= @user.photos.size %></span> PHOTOS</a></li>  
+                        <li><a data-toggle="tab" href="#menu-albums"><span class="count-in-user"><%= @user.albums.size %></span> ALBUMS</a></li> 
+                        <li><a data-toggle="tab" href="#menu-followings"><span class="count-in-user"><%= @user.followings.size %></span> FOLLOWINGS</a></li> 
+                        <li><a data-toggle="tab" href="#menu-followers"><span class="count-in-user"><%= @user.followers.size %></span> FOLLOWERS</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row album-user tab-content">
@@ -25,7 +30,7 @@
                 <%= render partial: "followings_user", locals: { users: @user_followings } %>
             </div>
             <div id="menu-followers" class="tab-pane fade">
-                <%= render partial: "followers_user", locals: { users: @user_followers } %>
+                <%= render partial: "followers_user", locals: { users: @user_followers, current_user: @user } %>
             </div>
         </div>  
 

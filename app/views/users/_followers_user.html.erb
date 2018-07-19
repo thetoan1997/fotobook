@@ -17,7 +17,14 @@
                     <span>ALBUMS</span>
                 </div>
             </div>
-            <div class="follow"><span class="follow-span">follow</span></div>
+            <% if current_user.followings.include?(user) %>
+                <div class="follow following"><span class="follow-span">following</span></div>
+            <% else %>
+                <%= form_for(current_user.active_user_followings.build) do |f| %>
+                    <%= hidden_field_tag :followed_id, 1     %>
+                    <%= f.submit "Follow", class: "follow" %>
+                <% end %>
+            <% end %>
         </div>
     </div>
     <% end %>
