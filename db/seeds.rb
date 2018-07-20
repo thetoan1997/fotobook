@@ -5,71 +5,55 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# Picture.destroy_all
-# Picture.create!([
+# Photo.destroy_all
+# Photo.create!([
 #     {
-#             picture_link: "#",
-#             title: "pic2user",
+#             title: "My fish",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 2,
-#             pictureable_type: "User"
+#             user_id: 1
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic1album",
+#             title: "My hometown",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 1,
-#             pictureable_type: "Album"
+#             user_id: 3
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic2album",
+#             title: "My summer",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 2,
-#             pictureable_type: "Album"
+#             user_id: 2
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic2user",
+#             title: "My vacation",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 3,
-#             pictureable_type: "User"
+#             user_id: 3
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic3user",
+#             title: "That's so amazing",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 3,
-#             pictureable_type: "User"
+#             user_id: 2
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic3album",
+#             title: "That looks great",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 2,
-#             pictureable_type: "Album"
+#             user_id: 2
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic2user",
+#             title: "My farm",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 2,
-#             pictureable_type: "Album"
+#             user_id: 3
 #     },
 #     {
-#             picture_link: "#",
-#             title: "pic2user",
+#             title: "The evening on farm",
 #             description: "nice",
 #             private: false,
-#             pictureable_id: 5,
-#             pictureable_type: "User"
+#             user_id: 2
 #     }
 # ])
 # Album.destroy_all
@@ -159,36 +143,41 @@
 #         firstname: "diep",
 #         lastname: "toan",
 #         username: "diep",
-#         password: "123",
-#         avatar_link: "#"
+#         password: "12345678",
+#         avatar_link: "https://i.imgur.com/AqmDqLt.png",
+#         email: "example1@gmail.com"
 #     },
 #     {
-#         firstname: "dan",
-#         lastname: "thy",
-#         username: "thy",
-#         password: "123",
-#         avatar_link: "#"
+#         firstname: "Fernando",
+#         lastname: "Elnino",
+#         username: "Torres",
+#         password: "12345678",
+#         avatar_link: "https://i.imgur.com/AqmDqLt.png",
+#         email: "example2@gmail.com"
 #     },
 #     {
 #         firstname: "khanh",
 #         lastname: "tran",
 #         username: "tran",
-#         password: "123",
-#         avatar_link: "#"
+#         password: "12345678",
+#         avatar_link: "https://i.imgur.com/XWw3jtJ.jpg",
+#         email: "example3@gmail.com"
 #     },
 #     {
 #         firstname: "diep1",
 #         lastname: "toan",
 #         username: "diep1",
-#         password: "123",
-#         avatar_link: "#"
+#         password: "12345678",
+#         avatar_link: "https://i.imgur.com/XWw3jtJ.jpg",
+#         email: "example4@gmail.com"
 #     },
 #     {
 #         firstname: "diep2",
 #         lastname: "toan",
 #         username: "diep2",
-#         password: "123",
-#         avatar_link: "#"
+#         password: "12345678",
+#         avatar_link: "https://i.imgur.com/XWw3jtJ.jpg",
+#         email: "example5@gmail.com"
 #     }
 # ])
 # UserFollowing.destroy_all
@@ -217,33 +206,181 @@
 #         follower_id: 5,
 #         followed_id: 4,
 #         date: Time.now.strftime("%Y-%d-%m %H:%M:%S %Z")
+#     },
+#     {
+#         follower_id: 2,
+#         followed_id: 3,
+#         date: Time.now.strftime("%Y-%d-%m %H:%M:%S %Z")
+#     },
+#     {
+#         follower_id: 3,
+#         followed_id: 2,
+#         date: Time.now.strftime("%Y-%d-%m %H:%M:%S %Z")
+#     },
+#     {
+#         follower_id: 2,
+#         followed_id: 1,
+#         date: Time.now.strftime("%Y-%d-%m %H:%M:%S %Z")
 #     }
 # ])
 
-Like.create!([
+# Like.create!([
+#     {
+#         :user_id => 1,
+#         :likeable_id => 4,
+#         :likeable_type => "Photo"
+#     },
+#     {
+#         :user_id => 2,
+#         :likeable_id => 5,
+#         :likeable_type => "Album" 
+#     },
+#     {
+#         :user_id => 2,
+#         :likeable_id => 4,
+#         :likeable_type => "Photo" 
+#     },
+#     {
+#         :user_id => 3,
+#         :likeable_id => 1,
+#         :likeable_type => "Photo"
+#     },
+#     {
+#         :user_id => 5,
+#         :likeable_id => 5,
+#         :likeable_type => "Album"
+#     }
+# ])
+Image.delete_all
+Image.create!([
     {
-        :user_id => 1,
-        :likeable_id => 4,
-        :likeable_type => "Picture"
+        :image_url => "https://i.imgur.com/FYySxYP.png",
+        :imageable_id => 2,
+        :imageable_type => "Photo"
     },
     {
-        :user_id => 2,
-        :likeable_id => 5,
-        :likeable_type => "Album" 
+        :image_url => "https://i.imgur.com/nYP0Tzp.jpg",
+        :imageable_id => 5,
+        :imageable_type => "Album" 
     },
     {
-        :user_id => 2,
-        :likeable_id => 4,
-        :likeable_type => "Picture" 
+        :image_url => "https://i.imgur.com/nYP0Tzp.jpg",
+        :imageable_id => 3,
+        :imageable_type => "Photo" 
     },
     {
-        :user_id => 3,
-        :likeable_id => 1,
-        :likeable_type => "Picture"
+        :image_url => "https://i.imgur.com/yxPbY0m.jpg",
+        :imageable_id => 1,
+        :imageable_type => "Photo"
     },
     {
-        :user_id => 5,
-        :likeable_id => 5,
-        :likeable_type => "Album"
+        :image_url => "https://i.imgur.com/yxPbY0m.jpg",
+        :imageable_id => 5,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/tzfDzjg.jpg",
+        :imageable_id => 5,
+        :imageable_type => "Photo"
+    },
+    {
+        :image_url => "https://i.imgur.com/s4EC8PF.jpg",
+        :imageable_id => 4,
+        :imageable_type => "Photo"
+    },
+    {
+        :image_url => "https://i.imgur.com/N4p08WV.jpg",
+        :imageable_id => 6,
+        :imageable_type => "Photo"
+    },
+    {
+        :image_url => "https://i.imgur.com/n2kJrTq.jpg",
+        :imageable_id => 8,
+        :imageable_type => "Photo"
+    },
+    {
+        :image_url => "https://i.imgur.com/30qHzo9.jpg",
+        :imageable_id => 7,
+        :imageable_type => "Photo"
+    },
+    {
+        :image_url => "https://i.imgur.com/yxPbY0m.jpg",
+        :imageable_id => 5,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/n2kJrTq.jpg",
+        :imageable_id => 5,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/45MAGel.jpg",
+        :imageable_id => 3,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/hRUxhN2.jpg",
+        :imageable_id => 4,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/yxPbY0m.jpg",
+        :imageable_id => 10,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/n2kJrTq.jpg",
+        :imageable_id => 10,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/45MAGel.jpg",
+        :imageable_id => 10,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/hRUxhN2.jpg",
+        :imageable_id => 10,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/yxPbY0m.jpg",
+        :imageable_id => 11,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/s4EC8PF.jpg",
+        :imageable_id => 12,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/N4p08WV.jpg",
+        :imageable_id => 11,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/n2kJrTq.jpg",
+        :imageable_id => 11,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/30qHzo9.jpg",
+        :imageable_id => 12,
+        :imageable_type => "Album"
+    },
+    {
+        :image_url => "https://i.imgur.com/nYP0Tzp.jpg",
+        :imageable_id => 13,
+        :imageable_type => "Album" 
+    },
+    {
+        :image_url => "https://i.imgur.com/nYP0Tzp.jpg",
+        :imageable_id => 13,
+        :imageable_type => "Album" 
+    },
+    {
+        :image_url => "https://i.imgur.com/yxPbY0m.jpg",
+        :imageable_id => 13,
+        :imageable_type => "Album"
     }
 ])
