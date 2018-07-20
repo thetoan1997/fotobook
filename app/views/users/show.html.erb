@@ -30,10 +30,12 @@
                 <%= render partial: "followings_user", locals: { users: @user_followings } %>
             </div>
             <div id="menu-followers" class="tab-pane fade">
-                <%= render partial: "followers_user", locals: { users: @user_followers, current_user: @user } %>
+                <%= render partial: "followers_user", locals: { users: @user_followers, current: @user } %>
             </div>
         </div>  
-
     </div>    
+    <div class="col-sm-2 ads-user">
+
+    </div>
   
   </div>
