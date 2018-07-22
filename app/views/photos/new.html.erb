@@ -15,13 +15,14 @@
 
                     <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
 
-                    <%= f.hidden_field :user_id, value: 2 %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
 
-                    <%= f.fields_for :image do |p| %>
+                    <%= f.fields_for @photo.build_image do |p| %>
                         <%= p.label :image_url %>
-                        <%= p.text_field :image_url %>
+                        <%= p.file_field :image_link %>
+
                         <%= p.hidden_field :imageable_type, value: "Photo" %>
-                        <%= p.hidden_field :imageable_id, value: 2 %>
+                        <%= p.hidden_field :imageable_id, value: current_user.id %>
                     <% end %>
                     <%= f.submit "Save" %>
                 <% end %>
