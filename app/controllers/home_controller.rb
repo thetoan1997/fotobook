@@ -1,16 +1,14 @@
 class HomeController < ApplicationController
     def index
         @photos = Photo.all
-        @mess = "Home Controller"
-        @photos_feeds = get_photos_recently_feeds(User.find(1))
-        @albums_feeds = get_albums_recently_feeds(User.find(1))
-        @photos_discover = get_photos_recently_discover()
-        @albums_discover = get_albums_recently_discover()
     end
 
     def show
-        @user = User.find(params[:id])
-        @id_photos_of_user = photos_of_user_following(@user)
+        @user = User.find(current_user.id)
+        @photos_feeds = get_photos_recently_feeds(@user)
+        @albums_feeds = get_albums_recently_feeds(@user)
+        @photos_discover = get_photos_recently_discover()
+        @albums_discover = get_albums_recently_discover()
     end
 
     private
@@ -39,4 +37,7 @@ class HomeController < ApplicationController
         def get_albums_recently_discover
             return Album.order('updated_at desc').limit(5)
         end
+    def get_user_of_photo(photo)
+        User.find(photo.user_id)
+    end
 end
