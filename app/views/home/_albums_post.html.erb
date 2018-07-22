@@ -1,0 +1,37 @@
+<div class="col-lg-6 content-post-part">
+    <div class="this-post">
+        <div class="row this-post-row">
+            <div class="this-post-picture col-sm-7">
+                <div class="album-picture">
+                    <div class="square-fit picture-first">
+                        <img class="picture-in-album" data-toggle="modal" data-target="#myModal-<%= type %><%= album.id %>" src=<%= album.images.pluck(:image_url)[0] %>>
+                        <div class="title-hover">
+                            <p class="title"><span>13</span> <br> PHOTOS</p>
+                        </div>
+                    </div>
+                    <div class="square-fit picture-second">
+                        <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[1] %>>
+                    </div>
+                    <div class="square-fit picture-third">
+                        <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[2] %>>
+                    </div>
+                </div>
+            </div>
+            <div class="this-post-info col-sm-5 col-xs-12">
+                <div class="user-of-post">
+                    <img class="avatar-user" src="https://i.imgur.com/AqmDqLt.png">
+                    <span>Diep Toan</span>
+                </div>
+                <div class="title-of-post">
+                    <span><b><%= album.title %><%= album.id %></b></span>
+                </div>
+                <div class="content-of-post">
+                    <span><%= album.description %></span>
+                </div>
+                <div class="likes-and-date-of-post">
+                    <span>30 likes</span><span><%= album.updated_at %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

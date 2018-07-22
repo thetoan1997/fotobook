@@ -1,211 +1,41 @@
-<h1>VIEWS/USERS/SHOW</h1>
-
-<h3>USERs</h3>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Username</th>
-    </tr>
-    <tr>
-        <td><%= @user.id %></td>
-        <td><%= @user.firstname %></td>
-        <td><%= @user.lastname %></td>
-        <td><%= @user.username %></td>
-    </tr>
-</table>
-
-<div class="profile-user">
-      <div class="info-user">
-            <img class="avatar-user" src="https://i.imgur.com/FYySxYP.png">
-            <div class="content-info-user-info">
+<p><%= flash[:notice] %></p>
+<div class="container row">
+    <%= render partial: "home/option_feeds_discover" %>
+    <div class="col-sm-8 profile-user">
+        <div class="row info-user">
+            <div class="col-sm-3 content-avatar-user-info">
+                <img class="avatar-user" src="https://i.imgur.com/FYySxYP.png">
+            </div>
+            <div class="col-sm-9 content-info-user-info">
                 <div class="follow"><span class="follow-span">follow</span></div>
                 <p class="name"><b><%= @user.username %></b></p>
-                <p class="account"><span><%= @count_photo %></span> PHOTOS  |  <span><%= @count_album %></span> <span class="albums">ALBUMS</span> | <span><%= @count_following %></span> FOLLOWINGS | <span><%= @count_follower %></span> FOLLOWERS</p>
-            </div>
-      </div>
-      <div class="album-user">
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>13</span> <br> PHOTOS</p>
+                <div class="account">
+                    <ul class="nav nav-tabs">   
+                        <li class="active"><a data-toggle="tab" href="#home-photos"><span class="count-in-user"><%= @user.photos.size %></span> PHOTOS</a></li>  
+                        <li><a data-toggle="tab" href="#menu-albums"><span class="count-in-user"><%= @user.albums.size %></span> ALBUMS</a></li> 
+                        <li><a data-toggle="tab" href="#menu-followings"><span class="count-in-user"><%= @user.followings.size %></span> FOLLOWINGS</a></li> 
+                        <li><a data-toggle="tab" href="#menu-followers"><span class="count-in-user"><%= @user.followers.size %></span> FOLLOWERS</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
         </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>24</span> <br> PHOTOS</p>
-                </div>
+        <div class="row album-user tab-content">
+            <div id="home-photos" class="tab-pane fade in active">
+                <%= render partial: "photos_user", locals: { images: @photos } %>
             </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
+            <div id="menu-albums" class="tab-pane fade">
+                <%= render partial: "albums_user", locals: { albums: @albums } %>
             </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
+            <div id="menu-followings" class="tab-pane fade">
+                <%= render partial: "followings_user", locals: { users: @user_followings } %>
             </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>2</span> <br> PHOTOS</p>
-                </div>
+            <div id="menu-followers" class="tab-pane fade">
+                <%= render partial: "followers_user", locals: { users: @user_followers, current: @user } %>
             </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>7</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>4</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>27</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>9</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>11</span><br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>3</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>15</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/UQ7fiuh.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>10</span> <br>  PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/AzBCEUW.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
-        <div class="album-picture">
-            <div class="square picture-first">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-                <div class="title-hover">
-                    <p class="title"><span>6</span> <br> PHOTOS</p>
-                </div>
-            </div>
-            <div class="square picture-second">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="square picture-third">
-                <img class="picture" src="https://i.imgur.com/kkApOoO.jpg">
-            </div>
-            <div class="title-album"><span>Album title goes here</span></div>
-        </div>
+        </div>  
+    </div>    
+    <div class="col-sm-2 ads-user">
 
-      </div>
-  </div>      
+    </div>
+  
+  </div>
