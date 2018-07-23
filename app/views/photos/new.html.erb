@@ -6,7 +6,7 @@
         </div>
         <div class="row main-new-photo">
             <div class="col-sm-6 title-mode-div">
-                <%= form_for(@photo) do |f| %>
+                <%= form_for([@user,@photo], :html => { :multipart => true }) do |f| %>
                     <%= f.label :title %>
                     <%= f.text_field :title %>
 
@@ -17,12 +17,9 @@
 
                     <%= f.hidden_field :user_id, value: current_user.id %>
 
-                    <%= f.fields_for @photo.build_image do |p| %>
+                    <%= f.fields_for :image do |p| %>
                         <%= p.label :image_url %>
                         <%= p.file_field :image_link %>
-
-                        <%= p.hidden_field :imageable_type, value: "Photo" %>
-                        <%= p.hidden_field :imageable_id, value: current_user.id %>
                     <% end %>
                     <%= f.submit "Save" %>
                 <% end %>
