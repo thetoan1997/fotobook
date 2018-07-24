@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .container{
     width: 100% !important;
+    min-height: 1000px;
     background-color: #f8f8f8;
     .content{
         .option-content{
@@ -10,8 +11,7 @@
             text-align: center;
             margin-top: 40px;
         }
-        .main-content{
-            height: 1000px;
+        .main-content-feeds, .main-content-discover{
             margin-top: 20px; 
             background-color: #ffffff;
             .option-photo-album{
@@ -24,25 +24,30 @@
                 .content-post-part{
                     padding: 10px;
                     .this-post{
-                        border: 1px solid black;
+                        // border: 1px solid black;
                         border-radius: 3px;
                         background-color: #f8f8f8;
                         max-width: 555px;
+                        box-shadow: 0px 2px 5px 1px #888888;
                         .this-post-row{
                             height: 100%;
                             margin: 0;
                             .this-post-picture{
-                                height: 100%;
-                                // width: 60%;
+                                // height: 255px;
                                 padding: 0;
-                                img{
-                                    object-fit: cover;
-                                    width:255px;
-                                    height:255px;
-                                    // overflow: hidden;
+                                .contain-picture-post{
+                                    width: 100%;
+                                    padding-bottom: 100%;
+                                    img{
+                                        position: absolute;
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
                                 }
                             }
                             .this-post-info{
+                                height: 15em;
                                 .user-of-post{
                                     .avatar-user{
                                         width: 30px;
@@ -55,10 +60,12 @@
                                     margin: 8px 0; 
                                 }
                                 .content-of-post{
-
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
                                 }
-                                .like-time-of-post{
-                                    // padding-top: 100%;
+                                .likes-and-date-of-post{
+                                    bottom: 0;
+                                    position: absolute;
                                 }
                             }
                         }
@@ -66,25 +73,119 @@
                 }
             }
             .content-post-albums{
-                display: none;
+                
             }
+        }
+        .main-content-discover{
+            
         }
         .ads-content{
             background-color: #f8f8f8;
-            height: 1000px;
+            // height: 1000px;
         }
     }
 }
-
-@media screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
+    .this-post .this-post-row .this-post-info{
+        height: 22em !important;
+    }
+}
+@media only screen and (max-width: 768px) {
     .container .content .main-content .row1 .row1-part .this-post .this-post-row .this-post-picture img{
         width: 100%;
         height: 323px;
     }
+    .this-post .this-post-row .this-post-info{
+        height: 10em !important;
+    }
 }
+
+
 .hide{
     display: none;
 }
 .show{
     display: block;
+}
+
+.album-picture{
+    width: 100%;
+    padding-bottom: 100%;
+    .square-fit {
+        width: 80%;
+        height: 80%;
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+        position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+        transition: all 1s ease;
+        .picture-in-album{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .title-hover{
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            margin: auto;
+            top:25%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 4;
+            text-align: center;
+            color: #fff;
+            .title{
+                margin-top: 30%;
+                font-family: Roboto, sans-serif;
+                font-size: 12px;
+                span{
+                    font-size: 18px;
+                    font-weight: bold;
+                } 
+            }
+        }
+    }
+    .picture-first{
+        z-index: 3;
+    }
+    .picture-second {
+        -ms-transform: rotate(10deg); /* IE 9 */
+        -webkit-transform: rotate(10deg); /* Safari */
+        transform: rotate(10deg); /* Standard syntax */
+        z-index: 2;
+    }
+    .picture-third {
+        -ms-transform: rotate(20deg); /* IE 9 */
+        -webkit-transform: rotate(20deg); /* Safari */
+        transform: rotate(20deg); /* Standard syntax */
+        z-index: 1;
+    }
+    .title-album{
+        position: absolute;
+        top:100%;
+        font-size: 12px;
+        font-family: Roboto, sans-serif;
+    }
+  }
+  .album-picture:hover .picture-second{
+    transition-duration: 0.8s;
+    transform: rotate(0deg);
+  }
+  .album-picture:hover .picture-third {
+    transition-duration: 0.8s;
+    transform: rotate(0deg) ;
+  }
+
+.modal{
+    .modal-content{
+        .modal-body{
+            .picture-in-modal{
+                width: 100%;
+            }
+        }
+    }
 }

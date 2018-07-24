@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
     has_many :albums
 
     has_many :photos
@@ -15,6 +19,7 @@ class User < ApplicationRecord
                                     dependent: :destroy
     has_many :followers, through: :passive_user_followings, source: :follower
 
+    accepts_nested_attributes_for :active_user_followings
 
     def follow(other_user)
         followings << other_user
