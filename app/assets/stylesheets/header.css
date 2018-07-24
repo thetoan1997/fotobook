@@ -29,7 +29,9 @@
 .navbar-nav{
     margin: 11px 0;
 }
-
+.navbar-nav>li{
+    margin: 0 20px;
+}
 .navbar-nav li a:hover {
     color: #fff !important;
 }
