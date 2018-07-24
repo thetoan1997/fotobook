@@ -9,15 +9,17 @@ class PhotosController < ApplicationController
     end 
 
     def new
-        @photo = Photo.new
+        @user = User.find(params[:user_id])
+        @photo = @user.photos.new
+        @photo.build_image
     end
 
     def create
-        @photo = Photo.new(photo_params)
-        @photo.image.attach(params[:image][:image_link])
+        @user = User.find(params[:user_id])
+        @photo = @user.photos.create!(photo_params)
+        # Image.find(62).image_link.attach(params[:photo][:image_attributes][:image_link])
         if @photo.save
             flash[:notice] = "Upload photo successful and welcome!"
-            @photo.image.create(params[:image])
             redirect_to user_path(current_user.id)
         else
             flash[:notice] = "Fail"
@@ -25,12 +27,11 @@ class PhotosController < ApplicationController
         end
     end
 
-    def edit
-        @photo = Photo.find(params[:id])
-    end
-
     private
         def photo_params
-            params.require(:photo).permit(:title, :description, :private, :user_id, image_attributes: [:image_url, :imageable_type, :imageable_id, :image_link])
+            params.require(:photo).permit(:title, 
+                :description, :private, :user_id, 
+                image_attributes: [:image_link, :image_url, :imageable_id, :imageable_type])
         end
+
 end 
