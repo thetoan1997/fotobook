@@ -1,9 +1,11 @@
 class Album < ApplicationRecord
-    belongs_to :user, optional: true
+    belongs_to :user
 
     has_many :images, as: :imageable
 
     has_many :likes, as: :likeable
+
+    accepts_nested_attributes_for :images
     
     def count_image
         Image.where("imageable_id = :id AND imageable_type= :type",
