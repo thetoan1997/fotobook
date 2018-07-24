@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
     def show
         @user = User.find(current_user.id)
-        @photos_feeds = get_photos_recently_feeds(@user)
+        @photos_feeds = Photo.where(user_id: @user.following_ids).order('updated_at desc').limit(5)
         @albums_feeds = get_albums_recently_feeds(@user)
         @photos_discover = get_photos_recently_discover()
         @albums_discover = get_albums_recently_discover()
@@ -19,10 +19,9 @@ class HomeController < ApplicationController
             end
             return $user_following
         end
-    private
+    protected
         def get_photos_recently_feeds(user)
-            @photos_of_user = Photo.where(user_id: list_users_following(user)).order('updated_at desc').limit(5)
-            return @photos_of_user
+            return Photo.where(user_id: user.following_ids).order('updated_at desc').limit(5)
         end
     private
         def get_albums_recently_feeds(user)
@@ -37,7 +36,8 @@ class HomeController < ApplicationController
         def get_albums_recently_discover
             return Album.order('updated_at desc').limit(5)
         end
-    def get_user_of_photo(photo)
-        User.find(photo.user_id)
-    end
+    private
+        def get_user_of_photo(photo)
+            User.find(photo.user_id)
+        end
 end
