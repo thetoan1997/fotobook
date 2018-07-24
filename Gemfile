@@ -6,9 +6,15 @@ ruby '2.4.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# group :development, :test do
+#   gem "sqlite3"
+# end
+group :production do
+  gem "pg"
+  gem 'rails_12factor'
+end
 
-gem 'mysql2', '~> 0.4.4'
+# gem 'mysql2', '~> 0.4.4'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -31,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -65,4 +71,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails-erd', group: :development
+
+gem 'bootstrap-sass', '~> 3.3.7'
+
+gem 'jquery-rails'
+
+gem 'devise', '~> 4.2'
 
