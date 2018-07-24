@@ -2,16 +2,22 @@
 <div class="col-lg-3 col-md-6 album-belongs-to-user">
     <div class="album-picture">
         <div class="square-fit picture-first">
-            <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[0] %>>
+            <% if album.images[0].image_link.attached? %>
+                <img class="picture-in-album" src=<%= album.images[0].image_link %>>
+            <% end %>
             <div class="title-hover">
                 <p class="title"><span>13</span> <br> PHOTOS</p>
             </div>
         </div>
         <div class="square-fit picture-second">
-            <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[1] %>>
+            <% if !album.images[1].nil? %>
+                <img class="picture-in-album" src=<%= album.images[1].image_link %>>
+            <% end %>
         </div>
         <div class="square-fit picture-third">
-            <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[2] %>>
+            <% if !album.images[2].nil? %>
+                <img class="picture-in-album" src=<%= album.images[2].image_link %>>
+            <% end %>
         </div>
     </div>
 </div>
