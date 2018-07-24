@@ -1,0 +1,8 @@
+vn:
+  home:
+    show:
+      photo: "Hinh anh"
+      album: "Album"
+      name: "Ten"
+      address: "Dia chi"
+  currency: "$"
