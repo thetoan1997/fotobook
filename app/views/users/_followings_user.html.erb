@@ -17,7 +17,10 @@
                 <span>ALBUMS</span>
             </div>
         </div>
-        <div class="follow"><span class="follow-span">unfollow</span></div>
+        <%= form_for(current_user.active_user_followings.find_by(followed_id: user.id),
+                html: { method: :delete }, remote: true) do |f| %>
+            <%= f.submit "unfollow", class: "follow follow-span" %>
+        <% end %>
     </div>
 </div>
 <% end %>
