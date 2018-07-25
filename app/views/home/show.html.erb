@@ -15,7 +15,7 @@
                 <% @photos_feeds.each do |photo| %>
                     <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
                     <%= render partial: "modal_photo", 
-                            locals: { url: photo.image, 
+                            locals: { url: photo.image.image_url, 
                                     title: photo.title, 
                                     description: photo.description, 
                                     id: "feeds"+photo.id.to_s } %>
