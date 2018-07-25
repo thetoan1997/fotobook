@@ -21,9 +21,11 @@
         </div>
         <div class="row album-user tab-content">
             <div id="home-photos" class="tab-pane fade in active">
+                <%= link_to "New Photo", new_user_photo_path(current_user.id) %>
                 <%= render partial: "photos_user", locals: { images: @photos } %>
             </div>
             <div id="menu-albums" class="tab-pane fade">
+                <%= link_to "New Album", new_user_album_path(current_user.id) %>
                 <%= render partial: "albums_user", locals: { albums: @albums } %>
             </div>
             <div id="menu-followings" class="tab-pane fade">
