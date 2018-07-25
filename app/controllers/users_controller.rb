@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
-        @photos = get_photos(@user)
+        @photos = Photo.where("user_id = ?",params[:id])
         @albums = get_albums(@user)
         @photo_links = get_images()
         @user_followings = get_followings(@user)
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     end
     private 
         def get_photos(user)
-            return Image.where(imageable_id: User.find(params[:id]).photo_ids, imageable_type: "Photo")
+            return Photo.where("user_id = ?",params[:id])
         end
     private
         def get_albums(user)

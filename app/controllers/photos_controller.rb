@@ -19,12 +19,26 @@ class PhotosController < ApplicationController
         @photo = @user.photos.create!(photo_params)
         # Image.find(62).image_link.attach(params[:photo][:image_attributes][:image_link])
         if @photo.save
-            flash[:notice] = "Upload photo successful and welcome!"
+            flash[:notice] = "Uploading photo successfully"
             redirect_to user_path(current_user.id)
         else
-            flash[:notice] = "Fail"
+            flash[:error] = "There was a problem uploading the photo"
             render 'new'
         end
+    end
+
+    def edit
+        @user = User.find(params[:user_id])
+        @photo = @user.photos.find(params[:id])
+    end
+
+    def update
+        @user = User.find(params[:user_id])
+        @photo = @user.photos.find(params[:id])
+        @photo.update(title: params[:photo][:title], 
+                      description: params[:photo][:description], 
+                      private: params[:photo][:private])
+        redirect_to user_path(current_user.id)
     end
 
     private
