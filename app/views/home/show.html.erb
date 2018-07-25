@@ -25,7 +25,7 @@
                 <% @albums_feeds.each do |album| %>
                     <%= render partial: "albums_post", locals: { album: album, type: "feeds" } %>
                     <%= render partial: "modal_album", 
-                            locals: { url: album.images.pluck(:image_url), 
+                            locals: { url: "https://i.imgur.com/30qHzo9.jpg", 
                                     id: "feeds"+album.id.to_s } %>
                 <% end %>
             </div>            
@@ -48,7 +48,7 @@
                 <% @albums_discover.each do |album| %>
                     <%= render partial: "albums_post", locals: { album: album, type: "discover" } %>
                     <%= render partial: "modal_album", 
-                            locals: { url: album.images.pluck(:image_url), 
+                            locals: { url: "https://i.imgur.com/30qHzo9.jpg", 
                                     id: "discover"+album.id.to_s } %>
                 <% end %>
             </div>
