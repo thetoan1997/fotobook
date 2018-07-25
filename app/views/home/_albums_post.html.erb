@@ -4,16 +4,22 @@
             <div class="this-post-picture col-sm-7">
                 <div class="album-picture">
                     <div class="square-fit picture-first">
-                        <img class="picture-in-album" data-toggle="modal" data-target="#myModal-<%= type %><%= album.id %>" src=<%= album.images.pluck(:image_url)[0] %>>
+                        <% if !album.images[0].nil? %>
+                            <img class="picture-in-album" data-toggle="modal" data-target="#myModal-<%= type %><%= album.id %>" src=<%= album.images.pluck(:image_url)[0] %>>
+                        <% end %>
                         <div class="title-hover">
                             <p class="title"><span>13</span> <br> PHOTOS</p>
                         </div>
                     </div>
                     <div class="square-fit picture-second">
-                        <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[1] %>>
+                        <% if !album.images[1].nil? %>
+                            <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[1] %>>
+                        <% end %>
                     </div>
                     <div class="square-fit picture-third">
-                        <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[2] %>>
+                        <% if !album.images[2].nil? %>
+                            <img class="picture-in-album" src=<%= album.images.pluck(:image_url)[2] %>>
+                        <% end %>
                     </div>
                 </div>
             </div>
