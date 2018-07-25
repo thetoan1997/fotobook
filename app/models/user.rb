@@ -21,6 +21,8 @@ class User < ApplicationRecord
 
     accepts_nested_attributes_for :active_user_followings
 
+    has_one_attached :avatar
+
     def follow(other_user)
         followings << other_user
     end
