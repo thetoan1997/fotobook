@@ -8,14 +8,14 @@
     <div class="row content tab-content">
         <%= render partial: "option_feeds_discover" %>
 
-        <div id="option-feeds" class="col-sm-8 main-content-feeds tab-pane fade in active tab-content">
+        <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
             <h3>FEEDS.</h3>
             <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
             <div id="option-photo-feeds"  class="content-post-photos row tab-pane fade in active">
                 <% @photos_feeds.each do |photo| %>
                     <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
                     <%= render partial: "modal_photo", 
-                            locals: { url: "https://i.imgur.com/30qHzo9.jpg", 
+                            locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
                                     title: photo.title, 
                                     description: photo.description, 
                                     id: "feeds"+photo.id.to_s } %>
@@ -25,20 +25,20 @@
                 <% @albums_feeds.each do |album| %>
                     <%= render partial: "albums_post", locals: { album: album, type: "feeds" } %>
                     <%= render partial: "modal_album", 
-                            locals: { url: "https://i.imgur.com/30qHzo9.jpg", 
+                            locals: { url: album.images.pluck(:image_url), 
                                     id: "feeds"+album.id.to_s } %>
                 <% end %>
             </div>            
         </div>
 
-        <div id="option-discover" class="col-sm-8 main-content-discover tab-pane fade tab-content">
+        <div id="option-discover" class="col-md-8 main-content-discover tab-pane fade tab-content">
             <h3>DISCOVER.</h3>
             <%= render partial: "option_photo_album", locals: { type: "discover" } %>
             <div id="option-photo-discover" class="content-post-photos row tab-pane fade in active">
                 <% @photos_discover.each do |photo| %>
                     <%= render partial: "photos_post", locals: { photo: photo, type: "discover" } %>
                     <%= render partial: "modal_photo", 
-                            locals: { url: "https://i.imgur.com/30qHzo9.jpg", 
+                            locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
                                     title: photo.title, 
                                     description: photo.description, 
                                     id: "discover"+photo.id.to_s } %>
@@ -48,10 +48,14 @@
                 <% @albums_discover.each do |album| %>
                     <%= render partial: "albums_post", locals: { album: album, type: "discover" } %>
                     <%= render partial: "modal_album", 
-                            locals: { url: "https://i.imgur.com/30qHzo9.jpg", 
+                            locals: { url: album.images.pluck(:image_url), 
                                     id: "discover"+album.id.to_s } %>
                 <% end %>
             </div>
+        </div>
+
+        <div class="col-md-2 option-ads">
+            This advertisement
         </div>
 
     </div>

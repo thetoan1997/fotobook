@@ -1,24 +1,26 @@
-<% albums.each do |album| %>
-<div class="col-lg-3 col-md-6 album-belongs-to-user">
-    <div class="album-picture">
-        <div class="square-fit picture-first">
-            <% if album.images[0].image_link.attached? %>
-                <img class="picture-in-album" src=<%= album.images[0].image_link %>>
-            <% end %>
-            <div class="title-hover">
-                <p class="title"><span>13</span> <br> PHOTOS</p>
+<div class="posts-in-user">
+    <% albums.each do |album| %>
+    <div class="col-lg-3 col-md-6 album-belongs-to-user">
+        <div class="album-picture">
+            <div class="square-fit picture-first">
+                <% if album.images[0].image_link.attached? %>
+                    <img class="picture-in-album" src=<%= url_for(album.images[0].image_link) %>>
+                <% end %>
+                <div class="title-hover">
+                    <p class="title"><span>13</span> <br> PHOTOS</p>
+                </div>
+            </div>
+            <div class="square-fit picture-second">
+                <% if !album.images[1].nil? %>
+                    <img class="picture-in-album" src=<%= url_for(album.images[1].image_link) %>>
+                <% end %>
+            </div>
+            <div class="square-fit picture-third">
+                <% if !album.images[2].nil? %>
+                    <img class="picture-in-album" src=<%= url_for(album.images[2].image_link) %>>
+                <% end %>
             </div>
         </div>
-        <div class="square-fit picture-second">
-            <% if !album.images[1].nil? %>
-                <img class="picture-in-album" src=<%= album.images[1].image_link %>>
-            <% end %>
-        </div>
-        <div class="square-fit picture-third">
-            <% if !album.images[2].nil? %>
-                <img class="picture-in-album" src=<%= album.images[2].image_link %>>
-            <% end %>
-        </div>
     </div>
+    <% end %>
 </div>
-<% end %>

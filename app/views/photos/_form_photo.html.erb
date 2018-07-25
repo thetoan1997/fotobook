@@ -18,7 +18,9 @@
     <%= f.fields_for :image do |p| %>
         <%= p.label :image_url %>
         <%= p.file_field :image_link, id: "avatar-upload" %>
-
+        <% if @photo.image.image_link.attached? %>
+            <%= image_tag(url_for(@photo.image.image_link), size: "300x300") %>
+        <% end %>
         <%= p.hidden_field :image_url, :value => "https://i.imgur.com/AqmDqLt.png" %>
     <% end %>
     <img id="img_prev" width=300 height=300 src="#" alt="your image" class="img-thumbnail hidden"/> <br/>

@@ -5,15 +5,15 @@
         <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                   alt="">
         <div class="form-signin">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: "new-user"}) do |f| %>
             <div class="field">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
             </div>
 
             <div class="field">
               <%= f.label :password %><br />
-              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+              <%= f.password_field :password, class: "form-control" %>
             </div>
 
             <% if devise_mapping.rememberable? -%>
