@@ -1,28 +1,41 @@
-<div class="col-sm-6 title-mode-div">
-    <div class="title-title-mode-div">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
+<div class="row">
+    <div class="col-sm-6 title-mode-div">
+        <div class="title-title-mode-div">
+            <%= f.label :title %><br>
+            <%= f.text_field :title %><br>
+        </div>
+        <div class="mode-title-mode-div">
+            <%= f.label :sharing_mode %><br>
+            <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
+        </div>
     </div>
-    <div class="mode-title-mode-div">
-    <%= f.label :sharing_mode %><br>
-    <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
+    <div class="col-sm-6 description-div">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
     </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
 </div>
-<div class="col-sm-6 description-div">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-</div>
-<%= f.hidden_field :user_id, value: current_user.id %>
-
-<div class="image-div">
+<div class="image-div row">
     <%= f.fields_for :image do |p| %>
-        <%= p.label :image_url %>
-        <%= p.file_field :image_link, id: "avatar-upload" %>
-        <% if @photo.image.image_link.attached? %>
-            <%= image_tag(url_for(@photo.image.image_link), size: "300x300") %>
-        <% end %>
-        <%= p.hidden_field :image_url, :value => "https://i.imgur.com/AqmDqLt.png" %>
+        <div class="choose-image col-sm-3">
+            <div class="choose-file-field">
+                <span class="glyphicon glyphicon-plus"></span>
+                <%= p.file_field :image_link, id: "image-upload" %>
+            </div>
+            <% if @photo.image.image_link.attached? %>
+                <div class="choose-image-field">
+                    <img id="img_prev" width=300 height=300 src=<%= url_for(@photo.image.image_link) %> class="img-thumbnail up-index"/>
+                </div>
+            <% else %>
+                <div class="choose-image-field">
+                    <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
+                </div>
+            <% end %>
+        </div>
     <% end %>
-    <img id="img_prev" width=300 height=300 src="#" alt="your image" class="img-thumbnail hidden"/> <br/>
 </div>
-<%= f.submit "Save" %>
+<%= f.submit "Save", class: "btn btn-success submit" %>
+
+<% if type == "edit" %>
+<%= link_to "delete", user_photo_path(@user, @photo), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger submit" %>
+<% end %>

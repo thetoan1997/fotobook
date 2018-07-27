@@ -2,10 +2,16 @@
     <% photos.each do |photo| %>
     <div class="col-lg-3 col-md-6">
         <div class="pictures-in-user">
+            <% unless photo.image.nil? %>
             <% if photo.image.image_link.attached? %>
-                <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: current_user.id, id: photo.id), class: "show-edit-photo" %>
-                
-                <img class="picture-post" src=<%= url_for(photo.image.image_link) %>>
+                <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: current_user.id, id: photo.id), class: "show-edit-photo" %>                
+                <img class="picture-post" data-toggle="modal" data-target="#myModal-user<%= photo.id %>" src=<%= url_for(photo.image.image_link) %>>
+                <%= render partial: "home/modal_photo", 
+                            locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                    title: photo.title, 
+                                    description: photo.description, 
+                                    id: "user"+photo.id.to_s } %>
+            <% end %>
             <% end %>
         </div>
         <p class="title-in-picture-user"><%= photo.title %></p>

@@ -9,7 +9,6 @@
         <%= render partial: "option_feeds_discover" %>
 
         <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
-            <h3>FEEDS.</h3>
             <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
             <div id="option-photo-feeds"  class="content-post-photos row tab-pane fade in active">
                 <% @photos_feeds.each do |photo| %>
@@ -32,7 +31,6 @@
         </div>
 
         <div id="option-discover" class="col-md-8 main-content-discover tab-pane fade tab-content">
-            <h3>DISCOVER.</h3>
             <%= render partial: "option_photo_album", locals: { type: "discover" } %>
             <div id="option-photo-discover" class="content-post-photos row tab-pane fade in active">
                 <% @photos_discover.each do |photo| %>

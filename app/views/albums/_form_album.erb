@@ -15,10 +15,13 @@
 <%= f.hidden_field :user_id, value: current_user.id %>
 
 <div class="image-div">
-    <%= f.fields_for :images, :html => { :multipart => true } do |p| %>
+    <%= f.fields_for :images, html: { multipart: true } do |p| %>
         <%= p.label :image_url %>
-        <%= p.file_field :image_link, :multiple => true, name: 'image_files[]', id: "avatar-upload" %>
+        <%= p.hidden_field :hi, value: "haha" %>
+        <%= p.file_field :image_link, multiple: true, id: "avatar-upload" %>
     <% end %>
     <img id="img_prev" width=300 height=300 src="#" alt="your image" class="img-thumbnail hidden"/> <br/>
+    <ul id="photos_clearing" class="clearing-thumbs" data-clearing>
+              </ul>
 </div>
 <%= f.submit "Save" %>

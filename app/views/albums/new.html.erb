@@ -1,12 +1,44 @@
 <div class="container row">
     <%= render partial: "home/option_feeds_discover" %>
-    <div class="col-sm-8 new-photo">
+    <div class="col-sm-8 new-album">
         <div class="title-new-photo">
             <h3>New Album</h3>
         </div>
         <div class="row main-new-photo">
                 <%= form_for([@user,@album], :html => { :multipart => true }) do |f| %>
-                    <%= render partial: "form_album", locals: { f: f } %>
+                    <div class="row">
+                        <div class="col-sm-6 title-mode-div">
+                            <div class="title-title-mode-div">
+                            <%= f.label :title %><br>
+                            <%= f.text_field :title %><br>
+                            </div>
+                            <div class="mode-title-mode-div">
+                            <%= f.label :sharing_mode %><br>
+                            <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 description-div">
+                            <%= f.label :description %>
+                            <%= f.text_area :description %>
+                        </div>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                    </div>
+
+                    <div class="image-div row">
+                        <%= f.fields_for :images do |p| %>
+                            <div class="choose-image col-sm-3">
+                                <div class="choose-file-field">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    <%= p.file_field :image_link, id: "image-upload" %>
+                                </div>
+                                <div class="choose-image-field">
+                                    <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
+                                </div>
+                            </div>
+                        <% end %>
+                       
+                    </div>
+                    <%= f.submit "Save" %>
                 <% end %>
         </div>
     </div>    
