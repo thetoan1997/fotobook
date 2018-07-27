@@ -10,7 +10,7 @@ class AlbumsController < ApplicationController
         @album = @user.albums.create!(album_params)
         if @album.save
             flash[:notice] = "Uploading album successfully"
-            redirect_to user_path(current_user.id)
+            redirect_to user_url(current_user.id)
         else
             flash[:error] = "There was a problem uploading the album"
             render "new"
@@ -23,17 +23,34 @@ class AlbumsController < ApplicationController
     end
 
     def update
-        raise params.inspect
+        @user = User.find(params[:user_id])
+        @album = @user.albums.find(params[:id])
+        @album.update!(title: params[:album][:title],
+                       description: params[:album][:description],
+                       private: params[:album][:private])
+        @album.images.create!(image_link: params[:album][:image_link])
+        
+        redirect_to user_url(current_user.id)
     end
 
+    def destroy
+        Album.destroy(params[:id])
+        flash[:success] = "Album deleted"
+        redirect_to user_url(current_user.id)
+    end
 
     private
         def album_params
             params.require(:album).permit(:title,
-                :description, :private, :user_id,
-                images_attributes: [ :image_link, 
-                                     :image_url, 
-                                     :imageable_id, 
-                                     :imageable_type ])
+                                          :description, 
+                                          :private, 
+                                          :user_id
+            )
         end
+        def image_params
+            params.require(:album).permit(
+                images_attributes: [ :image_link ]
+            )
+        end
+
 end
