@@ -19,6 +19,12 @@ class User < ApplicationRecord
                                     dependent: :destroy
     has_many :followers, through: :passive_user_followings, source: :follower
 
+    validates :firstname, presence: true, length: { maximum: 25 }
+    validates :lastname, presence: true, length: { maximum: 25 }
+    validates :email, presence: true, length: { maximum: 255 }
+    validates :password, presence: true, length: { maximum: 64 }
+
+
     accepts_nested_attributes_for :active_user_followings
 
     has_one_attached :avatar
