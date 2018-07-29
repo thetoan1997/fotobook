@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+    before_action :check_user_use_edit_new, only: [:edit, :new]
+
     def new 
         @user = User.find(params[:user_id])
         @album = @user.albums.new
@@ -39,6 +41,13 @@ class AlbumsController < ApplicationController
         redirect_to user_url(current_user.id)
     end
 
+    protected
+        def check_user_use_edit_new
+            if current_user != User.find(params[:user_id])
+                redirect_to user_url(current_user.id)
+            end
+        end
+
     private
         def album_params
             params.require(:album).permit(:title,
@@ -47,6 +56,7 @@ class AlbumsController < ApplicationController
                                           :user_id
             )
         end
+        
         def image_params
             params.require(:album).permit(
                 images_attributes: [ :image_link ]

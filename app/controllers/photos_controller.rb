@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+    before_action :check_user_use_edit_new, only: [:edit, :new]
+    
     def index
         @photos = Photo.paginate(page: params[:page], per_page: 10)
 
@@ -45,6 +47,12 @@ class PhotosController < ApplicationController
         flash[:success] = "Photo deleted"
         redirect_to user_url(current_user.id)
     end
+    protected
+        def check_user_use_edit_new
+            if current_user != User.find(params[:user_id])
+                redirect_to user_url(current_user.id)
+            end
+        end
 
     private
         def photo_params

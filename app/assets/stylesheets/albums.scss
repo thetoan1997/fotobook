@@ -8,23 +8,75 @@
         border-bottom: 2px solid #E0E0E0;
     }
     .main-new-photo{
+        .row{
+            margin: 15px 0;
+        }
+        .submit{
+            margin-top: 20px;
+        }
         .title-mode-div{
             .title-title-mode-div{
                 width: 100%;
-                #photo_title{
+                #album_title{
                     width: 100%;
                 }
             }
             .mode-title-mode-div{
-
+                margin-top: 20px;
             }
         }
-        #photo_description{
+        #album_description{
             width: 100%;
             min-height: 150px;
         }
         .image-div{
-
+            margin-top: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            .choose-image{
+                position: relative;
+                padding: 0;
+                span{
+                    font-size: 50px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);                  
+                }
+                div{
+                    width: 100%;
+                    padding-bottom: 100%;
+                
+                }
+                .choose-file-field{
+                    position: absolute;
+                    #image-upload{
+                        position: absolute;
+                        z-index: 2;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                    }
+                }
+                .choose-image-field{
+                    position: relative; 
+                    border: 2px dashed black;
+                    .img-thumbnail{
+                        padding: 0;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1;
+                        background: transparent;
+                    }
+                    .up-index{
+                        z-index: 3;
+                    }
+                }
+            }
+            .choose-image2{
+                display: none;
+            }
         }
     }
 }
