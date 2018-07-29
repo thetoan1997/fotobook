@@ -1,0 +1,21 @@
+<table >
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Email</th>
+    <th>Last Login</th>
+    <th> </th>
+  </tr>
+  <% users.each do |user| %>
+    <tr>
+        <td><%= user.firstname %></td>
+        <td><%= user.lastname %></td> 
+        <td><%= user.email %></td>
+        <td> </td>
+        <td>
+        <%= link_to 'Edit', class: "btn show-edit-photo" %>
+        <%= link_to 'Delete', class: "btn show-edit-photo " %>
+        </td>
+    </tr>
+  <% end %>
+</table>

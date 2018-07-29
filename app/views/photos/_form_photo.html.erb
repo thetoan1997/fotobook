@@ -15,12 +15,12 @@
     </div>
     <%= f.hidden_field :user_id, value: current_user.id %>
 </div>
-<div class="image-div row">
+<div class="image-div-photo row">
     <%= f.fields_for :image do |p| %>
         <div class="choose-image col-sm-3">
             <div class="choose-file-field">
                 <span class="glyphicon glyphicon-plus"></span>
-                <%= p.file_field :image_link, id: "image-upload" %>
+                <%= p.file_field :image_link, data: { max_file_size: 5.megabytes }, id: "image-upload" %>
             </div>
             <% if @photo.image.image_link.attached? %>
                 <div class="choose-image-field">

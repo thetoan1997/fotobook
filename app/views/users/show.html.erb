@@ -25,15 +25,21 @@
         </div>
         <div class="row album-user tab-content">
             <div id="menu-photos" class="tab-pane fade in active">
-                <div class="show-new-photo">
-                    <%= link_to "New Photo", new_user_photo_path(current_user.id), class: "btn new-photo-button" %>
-                </div>
-                <%= render partial: "photos_user", locals: { photos: @photos } %>
+                <% if current_user == @user %>
+                    <div class="show-new-photo">
+                        <%= link_to "New Photo", new_user_photo_path(current_user.id), class: "btn new-photo-button" %>
+                    </div>
+                    <%= render partial: "photos_user", locals: { photos: @photos } %>
+                <% else %>
+                    <%= render partial: "photos_user", locals: { photos: @photos_public } %>
+                <% end %>
             </div>
             <div id="menu-albums" class="tab-pane fade">
-                <div class="show-new-photo">
-                    <%= link_to "New Album", new_user_album_path(current_user.id), class: "btn new-photo-button" %>
-                </div>
+                <% if current_user == @user %>    
+                    <div class="show-new-photo">
+                        <%= link_to "New Album", new_user_album_path(current_user.id), class: "btn new-photo-button" %>
+                    </div>
+                <% end %>
                 <%= render partial: "albums_user", locals: { albums: @albums } %>
             </div>
             <div id="menu-followings" class="tab-pane fade">
@@ -47,5 +53,4 @@
     <div class="col-md-2 ads-user">
 
     </div>
-  
-  </div>
+</div>

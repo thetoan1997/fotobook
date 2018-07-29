@@ -5,7 +5,7 @@
         <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                   alt="">
         <div class="form-signin">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: "new-user"}) do |f| %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="field">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, class: "form-control" %>

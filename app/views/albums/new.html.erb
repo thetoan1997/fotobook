@@ -32,11 +32,21 @@
                                     <%= p.file_field :image_link, id: "image-upload" %>
                                 </div>
                                 <div class="choose-image-field">
-                                    <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
+                                    <img id="img_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
                                 </div>
                             </div>
                         <% end %>
-                       
+                        <%= f.fields_for :images do |p| %>
+                            <div class="choose-image col-sm-3">
+                                <div class="choose-file-field">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    <%= p.file_field :image_link, id: "image-upload" %>
+                                </div>
+                                <div class="choose-image-field">
+                                    <img id="img_prev2" width=300 height=300 src="#" class="img-thumbnail"/>
+                                </div>
+                            </div>
+                        <% end %>
                     </div>
                     <%= f.submit "Save" %>
                 <% end %>

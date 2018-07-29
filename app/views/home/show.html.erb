@@ -20,6 +20,7 @@
                                     id: "feeds"+photo.id.to_s } %>
                 <% end %>
             </div>
+            <%= paginate @photos_feeds %> 
             <div id="option-album-feeds" class="content-post-albums row tab-pane fade">
                 <% @albums_feeds.each do |album| %>
                     <%= render partial: "albums_post", locals: { album: album, type: "feeds" } %>
@@ -55,6 +56,6 @@
         <div class="col-md-2 option-ads">
             This advertisement
         </div>
-
     </div>
 </div>
+
