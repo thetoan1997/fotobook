@@ -252,6 +252,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rails-erd
   rails_12factor
+  rails_stdout_logging
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
