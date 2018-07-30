@@ -93,4 +93,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.assets.initialize_on_precompile = true
+
+  config.actionmailer.defaulturl_options = { :host => 'https://intense-citadel-58248.herokuapp.com/' }
 end

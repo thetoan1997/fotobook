@@ -23,7 +23,7 @@
                     <span><%= photo.description %></span>
                 </div>
                 <div class="likes-and-date-of-post">
-                    <span>30 likes</span><span><%= photo.updated_at %></span>
+                    <span class="glyphicon glyphicon-heart"></span><span>30</span><span><%= photo.updated_at.strftime("%T %d/%m/%Y") %></span>
                 </div>
             </div>
         </div>

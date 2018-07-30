@@ -33,15 +33,20 @@
             margin-top: 20px;
             padding-left: 15px;
             padding-right: 15px;
-            .choose-image{
+            .choose-image, .choose-image-album{
                 position: relative;
                 padding: 0;
-                span{
+                .plus{
                     font-size: 50px;
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);                  
+                }
+                .remove{
+                    z-index: 4;
+                    position: absolute;
+                    right: 0;
                 }
                 div{
                     width: 100%;
@@ -73,9 +78,6 @@
                         z-index: 3;
                     }
                 }
-            }
-            .choose-image2{
-                display: none;
             }
         }
     }

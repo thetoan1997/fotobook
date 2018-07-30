@@ -6,67 +6,7 @@
         </div>
         <div class="row main-new-photo">
             <%= form_for([@user,@album], :html => { :multipart => true }) do |f| %>
-                <div class="row">
-                    <div class="col-sm-6 title-mode-div">
-                        <div class="title-title-mode-div">
-                            <%= f.label :title %><br>
-                            <%= f.text_field :title %><br>
-                        </div>
-                        <div class="mode-title-mode-div">
-                            <%= f.label :sharing_mode %><br>
-                            <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 description-div">
-                        <%= f.label :description %>
-                        <%= f.text_area :description %>
-                    </div>
-                    <%= f.hidden_field :user_id, value: current_user.id %>
-                </div>
-                
-                <div class="image-div row">
-                    <% unless @album.images.nil? %> 
-                        <% @album.images.each do |image| %>
-                            <div class="choose-image col-sm-3">
-                                <div class="choose-file-field">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    <%= f.file_field :image_link, class: "image-upload", id: "image-upload" %>
-                                </div>
-                                <% if image.image_link.attached? %>
-                                    <div class="choose-image-field">
-                                        <img id="img_prev" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
-                                    </div>
-                                <% else %>
-                                    <div class="choose-image-field">
-                                        <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
-                                    </div>
-                                <% end %>
-                            </div>
-                        <% end %>
-                    <% end %>
-                    <div class="choose-image col-sm-3">
-                        <div class="choose-file-field">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <%= f.file_field :image_link, class: "image-upload", id: "image-upload" %>
-                        </div>
-                        <div class="choose-image-field">
-                            <img id="img_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
-                        </div>
-                    </div>
-                    <% 25.times do |i| %>
-                        <div class="choose-image choose-image<%= i+1 %> hidden col-sm-3">
-                            <div class="choose-file-field">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <%= f.file_field :image_link, class: "image-upload", id: "image-upload" %>
-                            </div>
-                            <div class="choose-image-field">
-                                <img id="img_prev<%= i+2 %>" width=300 height=300 src="#" class="img-thumbnail"/>
-                            </div>
-                        </div>
-                    <% end %>
-                </div>
-                <%= f.submit "Save" %>
-                <%= link_to "delete", user_album_path(@user, @album), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger submit" %>                
+                <%= render partial: "albums/form_album", locals: {f: f, user: @user, album: @album, type: "edit"} %>           
             <% end %>
         </div>
     </div>    

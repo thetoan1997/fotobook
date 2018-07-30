@@ -23,22 +23,18 @@ $(document).on('turbolinks:load', function() {
   
         reader.onload = function (e) {
           $('#img_prev'+i.toString()).attr('src', e.target.result);
+          $('#img_prev'+i.toString()).addClass("up-index");
+          $('.remove'+i.toString()).removeClass("hidden");
           i++;
         }
         reader.readAsDataURL(input.files[0]);
       }
     }
-    var j=1;
     var divs = document.getElementsByClassName("choose-image");
+    var divsAlbum = document.getElementsByClassName("choose-image-album");
     $(".image-upload").change(function(){
         divs[i].classList.remove('hidden');
-        j++;
+        divsAlbum[i].classList.remove('hidden');
         readURL(this);
     });
-    // var j=1;
-    // var divs = document.getElementsByClassName("choose-image");
-    // $(".add-image-div").click(function(){
-    //     divs[j].classList.remove('hidden');
-    //     j++;
-    // });
 });

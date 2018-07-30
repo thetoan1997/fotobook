@@ -8,7 +8,7 @@ class HomeController < ApplicationController
         @user = User.find(current_user.id)
         @photos_feeds = Photo.where(user_id: @user.following_ids)
                              .order(updated_at: :desc)
-                             .page(params[:page_photo])                   
+                             .page(params[:page])                   
         @albums_feeds = Album.where(user_id: @user.following_ids)
                              .order(updated_at: :desc)
                              .page(params[:page_album])
