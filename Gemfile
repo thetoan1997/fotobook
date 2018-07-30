@@ -14,7 +14,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-# gem 'mysql2', '~> 0.4.4'
+gem 'mysql2', '~> 0.4.4'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -78,3 +78,6 @@ gem 'jquery-rails'
 
 gem 'devise', '~> 4.2'
 
+gem 'kaminari', '~> 0.17.0'
+
+gem "font-awesome-rails"
