@@ -24,6 +24,8 @@ $(document).on('turbolinks:load', function() {
         reader.onload = function (e) {
           $('#img_prev'+i.toString()).attr('src', e.target.result);
           $('#img_prev'+i.toString()).addClass("up-index");
+          $('#al_prev'+i.toString()).attr('src', e.target.result);
+          $('#al_prev'+i.toString()).addClass("up-index");
           $('.remove'+i.toString()).removeClass("hidden");
           i++;
         }
@@ -34,7 +36,10 @@ $(document).on('turbolinks:load', function() {
     var divsAlbum = document.getElementsByClassName("choose-image-album");
     $(".image-upload").change(function(){
         divs[i].classList.remove('hidden');
-        divsAlbum[i].classList.remove('hidden');
         readURL(this);
     });
+    $(".image-upload-album").change(function(){
+      divsAlbum[i].classList.remove('hidden');
+      readURL(this);
+  });
 });

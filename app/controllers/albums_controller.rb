@@ -25,7 +25,18 @@ class AlbumsController < ApplicationController
     end
 
     def update
-        raise params.inspect
+        @user = User.find(params[:user_id])
+        @album = @user.albums.find(params[:id])
+        @album.update!(title: params[:album][:title],
+                       description: params[:album][:description],
+                       private: params[:album][:private])
+        0..24.times do |i|
+            unless (params[:album][:images_attributes]["#{i}"][:image_link].nil?)
+                @album.images.create!(image_link: params[:album][:images_attributes]["#{i}"][:image_link])
+            end
+        end
+        
+        redirect_to user_url(current_user.id)
     end
 
     def destroy
