@@ -53,7 +53,8 @@ class AlbumsController < ApplicationController
             params.require(:album).permit(:title,
                                           :description, 
                                           :private, 
-                                          :user_id
+                                          :user_id,
+                                          images_attributes: [ :image_link ]
             )
         end
         
