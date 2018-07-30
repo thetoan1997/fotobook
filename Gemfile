@@ -81,3 +81,5 @@ gem 'devise', '~> 4.2'
 gem 'kaminari', '~> 0.17.0'
 
 gem "font-awesome-rails"
+
+gem 'rails_stdout_logging'
