@@ -24,10 +24,22 @@ $(document).on('turbolinks:load', function() {
         reader.onload = function (e) {
           $('#img_prev'+i.toString()).attr('src', e.target.result);
           $('#img_prev'+i.toString()).addClass("up-index");
-          $('#al_prev'+i.toString()).attr('src', e.target.result);
-          $('#al_prev'+i.toString()).addClass("up-index");
           $('.remove'+i.toString()).removeClass("hidden");
           i++;
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    var j=1;
+    function readURL2(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+  
+        reader.onload = function (e) {
+          $('.al_prev'+j.toString()).attr('src', e.target.result);
+          $('.al_prev'+j.toString()).addClass("up-index");
+          $('.remove'+j.toString()).removeClass("hidden");
+          j++;
         }
         reader.readAsDataURL(input.files[0]);
       }
@@ -39,7 +51,7 @@ $(document).on('turbolinks:load', function() {
         readURL(this);
     });
     $(".image-upload-album").change(function(){
-      divsAlbum[i].classList.remove('hidden');
-      readURL(this);
+      divsAlbum[j].classList.remove('hidden');
+      readURL2(this);
   });
 });

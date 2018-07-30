@@ -48,44 +48,42 @@
     <%= f.submit "Save" %>
 <% else %>
     <div class="image-div row">
-        <% unless album.images.nil? %> 
-            <% album.images.each do |image| %>
-                <div class="choose-image col-sm-3">
-                    <% if image.image_link.attached? %>
-                        <div class="choose-image-field">
-                            <img id="img_prev" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
-                        </div>
-                    <% else %>
-                        <div class="choose-image-field">
-                            <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
-                        </div>
-                    <% end %>
-                </div>
+        <div class="images-available">
+            <% unless album.images.nil? %> 
+                <% album.images.each do |image| %>
+                    <div class="image-available col-sm-3">
+                        <% if image.image_link.attached? %>
+                            <div class="choose-image-field">
+                                <img id="img_prev_available" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
+                            </div>
+                        <% else %>
+                            <div class="choose-image-field">
+                                <img id="img_prev_available" width=300 height=300 src="#" class="img-thumbnail"/>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
             <% end %>
-        <% end %>
-        <%= f.fields_for :images do |p| %>
-            <div class="choose-image-album col-sm-3">
-                <div class="choose-file-field">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <%= p.file_field :image_link, class: "image-upload-album", id: "image-upload" %>
-                </div>
-                <div class="choose-image-field">
-                    <img id="al_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
-                </div>
+        </div>
+        <div class="choose-image-album mmm col-sm-3">
+            <div class="choose-file-field">
+                <span class="glyphicon glyphicon-plus"></span>
+                <input class="image-upload-album" id="image-upload" type="file" name="album[images_attributes][0][image_link]">                </div>
+            <div class="choose-image-field">
+                <img class="al_prev1 img-thumbnail" width=300 height=300 src="#" />
             </div>
-        <% end %>
-        <% 25.times do |i| %>params[:album][:images_attributes]["#{i}"]
-            <%= f.fields_for :images do |p| %>
+        </div>
+        
+        <% 25.times do |i| %>
             <div class="choose-image-album choose-image<%= i+1 %> hidden col-sm-3">
                 <div class="choose-file-field">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <%= p.file_field :image_link, class: "image-upload-album", id: "image-upload" %>
+                    <input class="image-upload-album" id="image-upload" type="file" name="album[images_attributes][<%= i+1 %>][image_link]">                
                 </div>
                 <div class="choose-image-field">
-                    <img id="al_prev<%= i+2 %>" width=300 height=300 src="#" class="img-thumbnail"/>
+                    <img class="al_prev<%= i+2 %> img-thumbnail" width=300 height=300 src="#" />
                 </div>
             </div>
-            <% end %>
         <% end %>
     </div>
     <%= f.submit "Save" %>

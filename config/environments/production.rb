@@ -94,6 +94,15 @@ Rails.application.configure do
 
   config.assets.initialize_on_precompile = true
 
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'intense-citadel-58248.herokuapp.com',
+    user_name:            'diepthetoan1@gmail.com',
+    password:             'DiepTheToan1997',
+    authentication:       'plain',
+    enable_starttls_auto:  true 
+  }
 
-config.action_mailer.default_url_options = { host: 'intense-citadel-58248.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'intense-citadel-58248.herokuapp.com' }
 end

@@ -31,7 +31,7 @@ class AlbumsController < ApplicationController
                        description: params[:album][:description],
                        private: params[:album][:private])
         0..24.times do |i|
-            unless (params[:album][:images_attributes]["#{i}"][:image_link].nil?)
+            unless (params[:album][:images_attributes]["#{i}"].nil?)
                 @album.images.create!(image_link: params[:album][:images_attributes]["#{i}"][:image_link])
             end
         end
