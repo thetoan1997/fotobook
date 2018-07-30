@@ -25,32 +25,45 @@
                 </div>
                 
                 <div class="image-div row">
-                <% @album.images.each do |image| %>
+                    <% unless @album.images.nil? %> 
+                        <% @album.images.each do |image| %>
+                            <div class="choose-image col-sm-3">
+                                <div class="choose-file-field">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    <%= f.file_field :image_link, class: "image-upload", id: "image-upload" %>
+                                </div>
+                                <% if image.image_link.attached? %>
+                                    <div class="choose-image-field">
+                                        <img id="img_prev" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
+                                    </div>
+                                <% else %>
+                                    <div class="choose-image-field">
+                                        <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
+                                    </div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    <% end %>
                     <div class="choose-image col-sm-3">
                         <div class="choose-file-field">
                             <span class="glyphicon glyphicon-plus"></span>
-                            <%= f.file_field :image_link, id: "image-upload" %>
+                            <%= f.file_field :image_link, class: "image-upload", id: "image-upload" %>
                         </div>
-                        <% if image.image_link.attached? %>
-                            <div class="choose-image-field">
-                                <img id="img_prev" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
+                        <div class="choose-image-field">
+                            <img id="img_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
+                        </div>
+                    </div>
+                    <% 25.times do |i| %>
+                        <div class="choose-image choose-image<%= i+1 %> hidden col-sm-3">
+                            <div class="choose-file-field">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <%= f.file_field :image_link, class: "image-upload", id: "image-upload" %>
                             </div>
-                        <% else %>
                             <div class="choose-image-field">
-                                <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
+                                <img id="img_prev<%= i+2 %>" width=300 height=300 src="#" class="img-thumbnail"/>
                             </div>
-                        <% end %>
-                    </div>
-                <% end %>
-                <div class="choose-image col-sm-3">
-                    <div class="choose-file-field">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <%= f.file_field :image_link, id: "image-upload" %>
-                    </div>
-                    <div class="choose-image-field">
-                        <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
-                    </div>
-                </div>
+                        </div>
+                    <% end %>
                 </div>
                 <%= f.submit "Save" %>
                 <%= link_to "delete", user_album_path(@user, @album), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger submit" %>                

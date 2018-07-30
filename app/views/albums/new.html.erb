@@ -29,23 +29,26 @@
                             <div class="choose-image col-sm-3">
                                 <div class="choose-file-field">
                                     <span class="glyphicon glyphicon-plus"></span>
-                                    <%= p.file_field :image_link, id: "image-upload" %>
+                                    <%= p.file_field :image_link, class: "image-upload", id: "image-upload1" %>
                                 </div>
                                 <div class="choose-image-field">
                                     <img id="img_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
                                 </div>
                             </div>
                         <% end %>
-                        <%= f.fields_for :images do |p| %>
-                            <div class="choose-image col-sm-3">
-                                <div class="choose-file-field">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    <%= p.file_field :image_link, id: "image-upload" %>
+                        
+                        <% 25.times do |i| %>
+                            <%= f.fields_for :images do |p| %>
+                                <div class="choose-image choose-image<%= i+1 %> hidden col-sm-3">
+                                    <div class="choose-file-field">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <%= p.file_field :image_link, class: "image-upload", id: "image-upload2" %>
+                                    </div>
+                                    <div class="choose-image-field">
+                                        <img id="img_prev<%= i+2 %>" width=300 height=300 src="#" class="img-thumbnail"/>
+                                    </div>
                                 </div>
-                                <div class="choose-image-field">
-                                    <img id="img_prev2" width=300 height=300 src="#" class="img-thumbnail"/>
-                                </div>
-                            </div>
+                            <% end %>
                         <% end %>
                     </div>
                     <%= f.submit "Save" %>

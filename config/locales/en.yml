@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  views:
+    devise:
+      fotobook-login: "Fotobook Login"
+      fotobook-signup: "Fotobook Signup"
+    layouts:
+      login: "Login"
+    pagination:
+      previous: "Previous"
+      next: "Next"
+      truncate: "..."
