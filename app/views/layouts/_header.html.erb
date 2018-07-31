@@ -8,9 +8,13 @@
                 <span class="icon-bar"></span>                        
                 </button>
                 <% if user_signed_in? %>
-                    <%= link_to "Fotobook", home_path(current_user.id), class: "navbar-brand" %>
+                    <% if current_user.admin? %>
+                        <%= link_to t('.logo-admin'), home_path(current_user.id), class: "navbar-brand" %>
+                    <% else %>
+                        <%= link_to t('.logo-user'), home_path(current_user.id), class: "navbar-brand" %>
+                    <% end %>
                 <% else %>
-                    <%= link_to "Fotobook", home_index_path, class: "navbar-brand" %>
+                    <%= link_to t(".logo-user"), home_index_path, class: "navbar-brand" %>
                 <% end %>
 
             </div>

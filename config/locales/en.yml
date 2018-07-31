@@ -30,13 +30,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  views:
     devise:
       fotobook-login: "Fotobook Login"
       fotobook-signup: "Fotobook Signup"
     layouts:
-      login: "Login"
+      header:
+        login: "Login"
+        logo-user: "Fotobook"
+        logo-admin: "Fotobook Admin"
     pagination:
       previous: "Previous"
       next: "Next"

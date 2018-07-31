@@ -47,8 +47,8 @@ class AlbumsController < ApplicationController
 
     protected
         def check_user_use_edit_new
-            if current_user != User.find(params[:user_id])
-                redirect_to user_url(current_user.id)
+            if current_user != User.find(params[:user_id]) && !current_user.admin?
+                redirect_to home_url(current_user.id)
             end
         end
 

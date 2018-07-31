@@ -3,7 +3,7 @@
     <div class="col-lg-3 col-md-6 album-belongs-to-user">
         <div class="album-picture">
             <div class="square-fit picture-first">
-                <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_album_path(user_id: current_user.id, id: album.id), class: "show-edit-photo" %>
+                <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_album_path(user_id: album.user_id, id: album.id), class: "show-edit-photo" %>
                 <% unless album.images[0].nil? %>
                     <% if album.images[0].image_link.attached? %>
                         <img class="picture-in-album" data-toggle="modal" data-target="#myModal-user<%= album.id %>" src=<%= url_for(album.images[0].image_link) %>>

@@ -4,7 +4,7 @@
             <div class="pictures-in-user">
                 <% unless photo.image.nil? %>
                 <% if photo.image.image_link.attached? %>
-                    <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: current_user.id, id: photo.id), class: "show-edit-photo" %>                
+                    <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
                     <img class="picture-post" data-toggle="modal" data-target="#myModal-user<%= photo.id %>" src=<%= url_for(photo.image.image_link) %>>
                     <% if(photo.private == true) %>
                         <i class="fa fa-lock"></i>
