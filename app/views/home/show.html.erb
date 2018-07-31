@@ -36,11 +36,13 @@
                 <div class="row">
                     <% @photos_discover.each do |photo| %>
                         <%= render partial: "photos_post", locals: { photo: photo, type: "discover" } %>
-                        <%= render partial: "modal_photo", 
-                                locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
-                                        title: photo.title, 
-                                        description: photo.description, 
-                                        id: "discover"+photo.id.to_s } %>
+                        <% unless photo.image.nil? %>
+                            <%= render partial: "modal_photo", 
+                                    locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                            title: photo.title, 
+                                            description: photo.description, 
+                                            id: "discover"+photo.id.to_s } %>
+                        <% end %>
                     <% end %>
                 </div>
                 <%= paginate @photos_discover %>
@@ -49,9 +51,12 @@
                 <div class="row">
                     <% @albums_discover.each do |album| %>
                         <%= render partial: "albums_post", locals: { album: album, type: "discover" } %>
-                        <%= render partial: "modal_album", 
-                                locals: { url: album.images.pluck(:image_url), 
-                                        id: "discover"+album.id.to_s } %>
+                        <% unless album.images[0].nil? %>
+                            <%= render partial: "modal_album", 
+                                    locals: { url: album.images.pluck(:image_url), 
+                                            id: "discover"+album.id.to_s } %>
+                    
+                        <% end %>
                     <% end %>
                 </div>
                 <%= paginate @albums_discover %>
