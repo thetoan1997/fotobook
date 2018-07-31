@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+    before_action :check_admin, only: [:show]
+
     PHOTO_LIMIT = 5
     def index
         redirect_to home_url(current_user.id)
@@ -26,6 +28,12 @@ class HomeController < ApplicationController
         def get_albums_recently_discover
             return Album.order(updated_at: :desc)
                                .page(params[:page])
+        end
+
+        def check_admin
+            if current_user.admin?
+                redirect_to admin_url(current_user.id)
+            end
         end
 
 end

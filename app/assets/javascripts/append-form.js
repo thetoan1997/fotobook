@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function() {
 
     var i = 1;
     
-    function readURL(input) {
+    function readURLPhoto(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
   
@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function() {
       }
     }
     var j=1;
-    function readURL2(input) {
+    function readURLAlbum(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
   
@@ -48,10 +48,24 @@ $(document).on('turbolinks:load', function() {
     var divsAlbum = document.getElementsByClassName("choose-image-album");
     $(".image-upload").change(function(){
         divs[i].classList.remove('hidden');
-        readURL(this);
+        readURLPhoto(this);
     });
     $(".image-upload-album").change(function(){
       divsAlbum[j].classList.remove('hidden');
-      readURL2(this);
-  });
+      readURLAlbum(this);
+    });
+
+    function readURLAvatar(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#avatar_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#avatar-upload").change(function(){
+        readURLAvatar(this);
+    });
 });
