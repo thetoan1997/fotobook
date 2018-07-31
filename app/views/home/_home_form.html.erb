@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row content tab-content">
+        <%= render partial: "option_feeds_discover" %>
+
+        <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
+            <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
+            <div id="option-photo-feeds"  class="content-post-photos tab-pane fade in active">
+                <div class="row">
+                    <% photos_feeds.each do |photo| %>
+                        <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
+                        <%= render partial: "modal_photo", 
+                                locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                        title: photo.title, 
+                                        description: photo.description, 
+                                        id: "feeds"+photo.id.to_s } %>
+                    <% end %>
+                </div>
+                <%= paginate photos_feeds, param_name: "page_photo_feeds" %> 
+            </div>
+            <div id="option-album-feeds" class="content-post-albums row tab-pane fade">
+                <div class="row">
+                    <% albums_feeds.each do |album| %>
+                        <%= render partial: "albums_post", locals: { album: album, type: "feeds" } %>
+                        <%= render partial: "modal_album", 
+                                locals: { url: album.images, 
+                                        id: "feeds"+album.id.to_s } %>
+                    <% end %>
+                </div>
+                <%= paginate albums_feeds, param_name: "page_album_feeds" %>
+            </div>            
+        </div>
+    <% if type == "user" %>
+        <div id="option-discover" class="col-md-8 main-content-discover tab-pane fade tab-content">
+            <%= render partial: "option_photo_album", locals: { type: "discover" } %>
+            <div id="option-photo-discover" class="content-post-photos row tab-pane fade in active">
+                <div class="row">
+                    <% photos_discover.each do |photo| %>
+                        <%= render partial: "photos_post", locals: { photo: photo, type: "discover" } %>
+                        <% unless photo.image.nil? %>
+                            <%= render partial: "modal_photo", 
+                                    locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                            title: photo.image.title, 
+                                            description: photo.image.description, 
+                                            id: "discover"+photo.id.to_s } %>
+                        <% end %>
+                    <% end %>
+                </div>
+                <%= paginate photos_discover, param_name: "page_photo_discover" %>
+            </div>
+            <div id="option-album-discover" class="content-post-albums row tab-pane fade">
+                <div class="row">
+                    <% albums_discover.each do |album| %>
+                        <%= render partial: "albums_post", locals: { album: album, type: "discover" } %>
+                        <% unless album.images[0].nil? %>
+                            <%= render partial: "modal_album", 
+                                    locals: { url: album.images, 
+                                            id: "discover"+album.id.to_s } %>
+                    
+                        <% end %>
+                    <% end %>
+                </div>
+                <%= paginate albums_discover, param_name: "page_album_discover" %>
+            </div>
+        </div>
+    <% end %>
+    
+        <div class="col-md-2 option-ads">
+
+        </div>
+    </div>
+</div>
+

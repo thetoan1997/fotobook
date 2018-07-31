@@ -20,7 +20,7 @@
         <div class="choose-image col-sm-3">
             <div class="choose-file-field">
                 <span class="glyphicon glyphicon-plus"></span>
-                <%= p.file_field :image_link, data: { max_file_size: 5.megabytes }, id: "image-upload" %>
+                <%= p.file_field :image_link, data: { max_file_size: 5.megabytes }, class:"photo-upload", id: "photo-upload" %>
             </div>
             <% if @photo.image.image_link.attached? %>
                 <div class="choose-image-field">
@@ -34,8 +34,10 @@
         </div>
     <% end %>
 </div>
-<%= f.submit "Save", class: "btn btn-success submit" %>
+<div class="submit-div col-sm-3">
+<%= f.submit "Save", class: "btn btn-success save-button" %>
 
 <% if type == "edit" %>
-<%= link_to "delete", user_photo_path(@user, @photo), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger submit" %>
+<%= link_to "delete", user_photo_path(@user, @photo), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
 <% end %>
+</div>

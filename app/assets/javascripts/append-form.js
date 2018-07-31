@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function() {
 
     var i = 1;
     
-    function readURLPhoto(input) {
+    function readURLNewAlbum(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
   
@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function() {
       }
     }
     var j=1;
-    function readURLAlbum(input) {
+    function readURLEditAlbum(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
   
@@ -48,11 +48,11 @@ $(document).on('turbolinks:load', function() {
     var divsAlbum = document.getElementsByClassName("choose-image-album");
     $(".image-upload").change(function(){
         divs[i].classList.remove('hidden');
-        readURLPhoto(this);
+        readURLNewAlbum(this);
     });
     $(".image-upload-album").change(function(){
       divsAlbum[j].classList.remove('hidden');
-      readURLAlbum(this);
+      readURLEditAlbum(this);
     });
 
     function readURLAvatar(input) {
@@ -68,4 +68,22 @@ $(document).on('turbolinks:load', function() {
     $("#avatar-upload").change(function(){
         readURLAvatar(this);
     });
+
+
+    function readURLPhoto(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+  
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+          $('#img_prev').addClass("up-index");
+          $('.remove'+i.toString()).removeClass("hidden");
+          i++;
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#photo-upload").change(function(){
+      readURLPhoto(this);
+  });
 });

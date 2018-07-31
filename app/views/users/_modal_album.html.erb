@@ -1,56 +1,56 @@
-<div class="modal fade" id="myModal-<%= id %>" role="dialog">
-    <div class="modal-dialog">      
-    <!-- Modal content-->
-    <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-                <div id="myCarousel-<%= id %>" class="carousel slide">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <% (1..url.length-1).each do |i| %>
-                                <li data-target="#myCarousel" data-slide-to=<%= i %>></li>
-                            <% end %>
-                        </ol>
+# <div class="modal fade" id="myModal-<%= id %>" role="dialog">
+#     <div class="modal-dialog">      
+#     <!-- Modal content-->
+#     <div class="modal-content">
+#         <div class="modal-header">
+#         <button type="button" class="close" data-dismiss="modal">&times;</button>
+#         <h4 class="modal-title">Modal Header</h4>
+#         </div>
+#         <div class="modal-body">
+#                 <div id="myCarousel-<%= id %>" class="carousel slide">
+#                         <!-- Indicators -->
+#                         <ol class="carousel-indicators">
+#                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+#                             <% (1..url.length-1).each do |i| %>
+#                                 <li data-target="#myCarousel" data-slide-to=<%= i %>></li>
+#                             <% end %>
+#                         </ol>
                     
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                            <div class="item active">
-                                <% unless url[0].nil? %>
-                                <% if url[0].image_link.attached? %>
-                                    <img src=<%= url_for(url[0].image_link) %> alt="New York" width="1000" height="1000">    
-                                <% end %>
-                                <% end %>
-                            </div>
-                            <% (1..url.length-1).each do |i| %>
-                            <div class="item">
-                                <% unless url[i].nil? %>
-                                <% if url[i].image_link.attached? %>
-                                    <img src=<%= url_for(url[i].image_link) %> alt="Chicago" width="1000" height="1000">   
-                                <% end %>
-                                <% end %>
-                            </div>
-                            <% end %>
-                        </div>
+#                         <!-- Wrapper for slides -->
+#                         <div class="carousel-inner" role="listbox">
+#                             <div class="item active">
+#                                 <% unless url[0].nil? %>
+#                                 <% if url[0].image_link.attached? %>
+#                                     <img src=<%= url_for(url[0].image_link) %> class="picture-in-modal" alt="New York" >    
+#                                 <% end %>
+#                                 <% end %>
+#                             </div>
+#                             <% (1..url.length-1).each do |i| %>
+#                             <div class="item">
+#                                 <% unless url[i].nil? %>
+#                                 <% if url[i].image_link.attached? %>
+#                                     <img src=<%= url_for(url[i].image_link) %> class="picture-in-modal" alt="Chicago" >   
+#                                 <% end %>
+#                                 <% end %>
+#                             </div>
+#                             <% end %>
+#                         </div>
                     
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel-<%= id %>" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel-<%= id %>" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-    </div>
-    <!-- End Modal -->
-    </div>
-</div>
+#                         <!-- Left and right controls -->
+#                         <a class="left carousel-control" href="#myCarousel-<%= id %>" role="button" data-slide="prev">
+#                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+#                             <span class="sr-only">Previous</span>
+#                         </a>
+#                         <a class="right carousel-control" href="#myCarousel-<%= id %>" role="button" data-slide="next">
+#                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+#                             <span class="sr-only">Next</span>
+#                         </a>
+#                     </div>
+#         </div>
+#         <div class="modal-footer">
+#         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+#         </div>
+#     </div>
+#     <!-- End Modal -->
+#     </div>
+# </div>

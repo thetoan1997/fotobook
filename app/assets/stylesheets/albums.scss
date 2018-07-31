@@ -12,7 +12,6 @@
             margin: 15px 0;
         }
         .submit{
-            margin-top: 20px;
         }
         .title-mode-div{
             .title-title-mode-div{
@@ -78,6 +77,15 @@
                         z-index: 3;
                     }
                 }
+            }
+        }
+        .submit-div{
+            .save-button{
+                position: relative;
+            }
+            .delete-button{
+                position: absolute;
+                right: 0;
             }
         }
     }

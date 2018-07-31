@@ -19,11 +19,19 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                                <img src=<%= url[0] %> alt="New York" width="1000" height="1000">    
+                                <% unless url[0].nil? %>
+                                <% if url[0].image_link.attached? %>
+                                    <img src=<%= url_for(url[0].image_link) %> class="picture-in-modal" alt="New York" >    
+                                <% end %>
+                                <% end %>
                             </div>
                             <% (1..url.length-1).each do |i| %>
                             <div class="item">
-                                <img src=<%= url[i] %> alt="Chicago" width="1000" height="1000">   
+                                <% unless url[i].nil? %>
+                                <% if url[i].image_link.attached? %>
+                                    <img src=<%= url_for(url[i].image_link) %> class="picture-in-modal" alt="Chicago" >   
+                                <% end %>
+                                <% end %>
                             </div>
                             <% end %>
                         </div>

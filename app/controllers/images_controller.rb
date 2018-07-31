@@ -10,6 +10,14 @@ class ImagesController < ApplicationController
         Image.find(8).image_link.attach(params[:image][:image_link])
         redirect_to root_path
     end
+
+    def destroy
+        $album_id = Image.find(params[:id]).imageable.id
+        Image.destroy(params[:id])
+        flash[:success] = "Image of album deleted"
+        redirect_to edit_user_album_url(user_id: current_user.id, 
+                        id: $album_id)
+    end
     
     private
     def image_params
