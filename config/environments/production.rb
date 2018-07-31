@@ -102,16 +102,17 @@ Rails.application.configure do
 
   config.action_mailer.default :charset => "utf-8"
 
+  config.action_mailer.default_url_options = { host: 'intense-citadel-58248.herokuapp.com' }
+
   
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'intense-citadel-58248.herokuapp.com',
-    user_name:            ENV["GMAIL_SMTP_USER"],
+    domain:               'heroku.com',
+    user_name:            'diepthetoan1@gmail.com',
     password:             ENV["GMAIL_SMTP_PASSWORD"],
     authentication:       :plain,
     enable_starttls_auto:  true 
   }
 
-  config.action_mailer.default_url_options = { host: 'intense-citadel-58248.herokuapp.com' }
 end
