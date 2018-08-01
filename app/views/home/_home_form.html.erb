@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row content tab-content">
         <%= render partial: "option_feeds_discover" %>
-
+    <% if type == "user" %>
         <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
             <p> feeds </p>
             <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
@@ -16,7 +16,7 @@
                 </div>
             </div>            
         </div>
-    <% if type == "user" %>
+
         <div id="option-discover" class="col-md-8 main-content-discover tab-pane fade tab-content">
             <p> discover </p>
             <%= render partial: "option_photo_album", locals: { type: "discover" } %>
@@ -30,6 +30,21 @@
                     <%= render 'albums_discover' %>
                 </div>
             </div>
+        </div>
+    <% else %>
+        <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
+            <p> feeds </p>
+            <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
+            <div id="option-photo-feeds"  class="content-post-photos tab-pane fade in active">
+                <div id="photos_feeds">
+                    <%= render 'photos_feeds', locals: {photos: photos_guest} %>
+                </div>
+            </div>
+            <div id="option-album-feeds" class="content-post-albums row tab-pane fade">
+                <div id="albums_feeds">
+                    <%= render 'albums_feeds', locals: {albums: albums_guest} %>
+                </div>
+            </div>            
         </div>
     <% end %>
     

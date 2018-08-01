@@ -6,4 +6,4 @@
                         id: "feeds"+album.id.to_s } %>
     <% end %>
 </div>
-<%= paginate @albums_feeds, param_name: "page_album_feeds" %>
+<%= paginate @albums_feeds, param_name: "page_album_feeds", remote: true %>

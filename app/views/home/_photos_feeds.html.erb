@@ -8,4 +8,4 @@
                         id: "feeds"+photo.id.to_s } %>
     <% end %>
 </div>
-<%= paginate @photos_feeds, param_name: "page_photo_feeds" %> 
+<%= paginate @photos_feeds, param_name: "page_photo_feeds", remote: true %> 

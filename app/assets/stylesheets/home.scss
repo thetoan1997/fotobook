@@ -11,6 +11,7 @@
         text-align: center;
         margin-top: 40px;
         border: 0;
+        padding: 0;
         li{
             float: none;
             a{
@@ -219,7 +220,8 @@
             height: 75px;
             border-radius: 50%;
             margin: auto;
-            top:25%;
+            top:50%;
+            transform: translateY(-50%);
             left: 0;
             right: 0;
             background: rgba(0, 0, 0, 0.5);
