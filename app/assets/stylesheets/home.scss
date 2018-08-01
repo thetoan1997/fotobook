@@ -6,12 +6,26 @@
     min-height: 1000px;
     background-color: #f8f8f8;
     margin: 0;
-    .content{
-        .option-content{
-            background-color: #f8f8f8;
-            text-align: center;
-            margin-top: 40px;
+    .option-content{
+        background-color: #f8f8f8;
+        text-align: center;
+        margin-top: 40px;
+        border: 0;
+        li{
+            float: none;
+            a{
+                color: #828282;
+                border: 0;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 505;
+            }
         }
+        li.active> a{
+            background-color: transparent;
+            color: #3C5999;
+        }
+    }
+    .content{
         .main-content-feeds, .main-content-discover{
             margin-top: 20px; 
             background-color: #ffffff;
@@ -19,10 +33,14 @@
                 margin: 20px;
                 text-align: center;
                 .show-photos{
+                    background-color: #fff;
                     margin-right: -5px;
+                    border: 1px solid #3C5999;
                 }
                 .show-albums{
+                    background-color: #fff;
                     margin-right: 5px;
+                    border: 1px solid #3C5999;
                 }
                 .change-to-blue{
                     background-color: #3C5999;
@@ -64,7 +82,9 @@
                                 .user-of-post{
                                     span{
                                         color: #3C5999;
-                                        font-weight: bold;    
+                                        font-weight: bold;  
+                                        font-family: 'Roboto', sans-serif;
+                                        font-weight: 510;  
                                     }
                                     .avatar-user{
                                         width: 30px;
@@ -74,11 +94,14 @@
                                     }
                                 }
                                 .title-of-post{
-                                    margin: 8px 0; 
+                                    margin: 8px 0;
+                                    font-family: 'Roboto', sans-serif;
+
                                 }
                                 .content-of-post{
                                     overflow: hidden;
                                     text-overflow: ellipsis;
+                                    font-family: 'Roboto', sans-serif;
                                 }
                                 .likes-and-date-of-post{
                                     bottom: 0;
@@ -92,10 +115,12 @@
                                     span:nth-child(2){
                                         position: absolute;
                                         padding-left: 15px;
+                                        font-family: 'Roboto', sans-serif;
                                     }
                                     span:nth-child(3){
                                         right: 0;
                                         padding-right: 20px;
+                                        font-family: 'Roboto', sans-serif;
                                     }
                                 }
                             }

@@ -3,6 +3,7 @@
         <%= render partial: "option_feeds_discover" %>
 
         <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
+            <p> feeds </p>
             <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
             <div id="option-photo-feeds"  class="content-post-photos tab-pane fade in active">
                 <div class="row">
@@ -31,6 +32,7 @@
         </div>
     <% if type == "user" %>
         <div id="option-discover" class="col-md-8 main-content-discover tab-pane fade tab-content">
+            <p> discover </p>
             <%= render partial: "option_photo_album", locals: { type: "discover" } %>
             <div id="option-photo-discover" class="content-post-photos row tab-pane fade in active">
                 <div class="row">
@@ -39,8 +41,8 @@
                         <% unless photo.image.nil? %>
                             <%= render partial: "modal_photo", 
                                     locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
-                                            title: photo.image.title, 
-                                            description: photo.image.description, 
+                                            title: photo.title, 
+                                            description: photo.description, 
                                             id: "discover"+photo.id.to_s } %>
                         <% end %>
                     <% end %>

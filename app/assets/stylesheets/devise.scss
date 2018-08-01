@@ -59,46 +59,82 @@
     }
 }
 
+.form-devise{
+    .title-devise{
+        text-align: center;
+        color: #3C5999;
+        font-size: 40px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 505;
+    }
+    
+    .user-signup, .user-signin, .user-reset-password{
+        margin-top: 20px;
+        padding: 50px 70px 10px 70px;
+        background-color: #f7f7f7;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    
+        .form-signin{
+            .new_user{
+                .field{
+                    margin-top: 10px;
+                    .form-control{
+                        position: relative;
+                        font-size: 16px;
+                        height: auto;
+                        padding: 10px;
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                    }
+                    .form-control:focus{
+                        z-index: 2;
+                    }
+                }
+                .actions{
+                    width: 35%;
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    .btn-signup, .btn-signin{
+                        width: 100%;
+                        background-color: #3C5999;
+                        color: #fff;
+                    }                
+                }
+                .send-mail-to-reset-password{
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+            input[type="text"]{
+                margin-bottom: -1px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            input[type="password"]{
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .user-email{
+                width: 100%;
+            }
+        }
+        .go-to-forgot-password{
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+    .go-to-signup{
+        margin-top: 10px;
+        text-align: center;
+    }
+}
 
-.form-signin .form-signin-heading, .form-signin .checkbox
-{
-    margin-bottom: 10px;
-}
-.form-signin .checkbox
-{
-    font-weight: normal;
-}
-.form-signin .form-control
-{
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.form-signin .form-control:focus
-{
-    z-index: 2;
-}
-.form-signin input[type="text"]
-{
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-.form-signin input[type="password"]
-{
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.title-devise{
-    text-align: center;
-    color: #3C5999;
-    font-size: 40px;
-}
+
 
 .login-title
 {
@@ -111,7 +147,7 @@
 {
     width: 96px;
     height: 96px;
-    margin: 0 auto 10px;
+    margin: 0 auto 40px;
     display: block;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -126,8 +162,6 @@
     display: block;
     margin-top: 10px;
 }
-.render-shared-links{
-    text-align: center;
-}
+
 
 
