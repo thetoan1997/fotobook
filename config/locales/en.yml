@@ -30,15 +30,34 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-    devise:
-      fotobook-login: "Fotobook Login"
-      fotobook-signup: "Fotobook Signup"
-    layouts:
-      header:
-        login: "Login"
-        logo-user: "Fotobook"
-        logo-admin: "Fotobook Admin"
+  devise:
+    fotobook-login: "Fotobook Login"
+    fotobook-signup: "Fotobook Signup"
+  layouts:
+    header:
+      login: "Login"
+      logo-user: "Fotobook"
+      logo-admin: "Fotobook Admin"
+  views:
     pagination:
       previous: "Previous"
       next: "Next"
       truncate: "..."
+  photos:
+    create:
+      success: Photo created successfully!
+      error: There was a problem uploading the photo
+    destroy:
+      success: Photo deleted successfully!
+      error: There was a problem deleting the photo
+
+  albums:
+    create:
+      success: Album created successfully!
+      error: There was a problem uploading the album
+    destroy:
+      success: Album deleted successfully!
+      error: There was a problem deleting the album
+
+
+

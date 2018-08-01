@@ -11,11 +11,9 @@ class AlbumsController < ApplicationController
         @user = User.find(params[:user_id])
         @album = @user.albums.create!(album_params)
         if @album.save
-            flash[:notice] = "Uploading album successfully"
-            redirect_to user_url(current_user.id)
+            redirect_to user_url(current_user.id), notice: t('.success')
         else
-            flash[:error] = "There was a problem uploading the album"
-            render "new"
+            render "new", alert: t('.error')
         end
     end
 
@@ -40,9 +38,13 @@ class AlbumsController < ApplicationController
     end
 
     def destroy
-        Album.destroy(params[:id])
-        flash[:success] = "Album deleted"
-        redirect_to user_url(current_user.id)
+        album = Album.find(params[:id])
+        album.destroy
+        if album.destroyed?        
+            redirect_to user_url(current_user.id), notice: t('.success')
+        else
+            render "edit", alert: t('.error')
+        end
     end
 
     protected
@@ -53,6 +55,13 @@ class AlbumsController < ApplicationController
         end
 
     private
+        def can_destroy?
+            self.class.reflect_on_all_associations.all? do |assoc|
+            ( ([:restrict_with_error, :restrict_with_exception].exclude? assoc.options[:dependent]) ||
+                (assoc.macro == :has_one && self.send(assoc.name).nil?) ||
+                (assoc.macro == :has_many && self.send(assoc.name).empty?) )
+            end
+        end
         def album_params
             params.require(:album).permit(:title,
                                           :description, 

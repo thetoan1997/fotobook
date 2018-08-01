@@ -39,9 +39,10 @@
     a{
         font-family: 'Roboto', sans-serif;
         font-weight: 510;
+        font-size: 13px;
     }
 }
-.navbar-nav>li:nth-child(1){
+.navbar-nav .avatar-user-li{
     margin-right: -15px; 
 }
 .navbar-nav li a:hover {

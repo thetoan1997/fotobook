@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     private
         def check_user_get_photos
             return Photo.where("user_id = ?",params[:id])
+                        .page(params[:user_photos])
         end
         
         def check_user_get_photos_public
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
 
         def check_user_get_albums
             return Album.where("user_id = ?",params[:id])
+                        .page(params[:user_albums])
         end
         
         def check_user_get_albums_public

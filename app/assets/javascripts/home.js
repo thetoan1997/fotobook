@@ -1,4 +1,10 @@
 $(document).on('turbolinks:load', function() {
+    
+    $(function(){
+        $('.pagination a').attr('data-remote', 'true')
+     });
+    
+    
     $('.show-albums').click(function () {
         if(!$('.show-albums').hasClass('change-to-blue')){
             $('.show-albums').addClass('change-to-blue')
@@ -12,18 +18,7 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
-    // $.urlParam = function(name){
-    //     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    //     return results[1] || 0;
-    // }
-    // if($.urlParam('page_album_feeds') != null){
-    //    $('.content-post-photos').removeClass('in active');
-    //    $('.content-post-albums').addClass('in active');
-    // }
-    // else if($.urlParam('page_photo_discover') != null){
-    //     $('.main-content-feeds').removeClass('active in');
-    //     $('.main-content-discover').addClass('active in');
-    // }
+
     $('#myTab a').click(function(e) {
         e.preventDefault();
         $(this).tab('show');
@@ -39,9 +34,4 @@ $(document).on('turbolinks:load', function() {
       var hash = window.location.hash;
       $('#myTab a[href="' + hash + '"]').tab('show');
 
-      $('#option-photo-discover span').click(function(){
-          alert("yes");
-            $('.main-content-discover').addClass('active in');
-            $('.main-content-feeds').removeClass('active in');
-      });
 });

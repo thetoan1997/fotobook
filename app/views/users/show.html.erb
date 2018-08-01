@@ -1,4 +1,8 @@
-<p><%= flash[:notice] %></p>
+<% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+          <%= value %>
+    </div>
+<% end %>
 <div class="container row">
     <div class="col-md-2"></div>
     <div class="col-md-8 profile-user">
@@ -11,7 +15,7 @@
                 </div>
             </div>
             <div class="col-sm-9 content-info-user-info">
-                <div class="follow follow-span"><%= link_to "Edit Profile", edit_user_registration_path %></div>
+                <div class="follow follow-span"><%= link_to "Edit Profile", edit_user_registration_path, class: "text-follow" %></div>
                 <p class="name"><b><%= (current_user.firstname+ " " + current_user.lastname).titleize() %></b></p>
                 <div class="account">
                     <ul class="nav nav-tabs">   
@@ -33,14 +37,22 @@
                 <% else %>
                     <%= render partial: "photos_user", locals: { photos: @photos_public } %>
                 <% end %>
+                <div class="pagination-in-user">
+                    <%= paginate @photos, param_name: "user_photos" %>
+                </div> 
             </div>
             <div id="menu-albums" class="tab-pane fade">
                 <% if current_user == @user %>    
                     <div class="show-new-photo">
                         <%= link_to "New Album", new_user_album_path(current_user.id), class: "btn new-photo-button" %>
                     </div>
+                    <%= render partial: "albums_user", locals: { albums: @albums } %>
+                <% else %>
+                    <%= render partial: "albums_user", locals: { albums: @albums_public } %>
                 <% end %>
-                <%= render partial: "albums_user", locals: { albums: @albums } %>
+                <div class="pagination-in-user">
+                    <%= paginate @albums, param_name: "user_albums" %>
+                </div> 
             </div>
             <div id="menu-followings" class="tab-pane fade">
                 <%= render partial: "followings_user", locals: { users: @user_followings } %>

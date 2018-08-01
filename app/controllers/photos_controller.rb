@@ -20,11 +20,9 @@ class PhotosController < ApplicationController
         @user = User.find(params[:user_id])
         @photo = @user.photos.create!(photo_params)
         if @photo.save
-            flash[:notice] = "Uploading photo successfully"
-            redirect_to user_url(current_user.id)
+            redirect_to user_url(current_user.id), notice: t('.success')
         else
-            flash[:error] = "There was a problem uploading the photo"
-            render 'new'
+            render 'new', alert: t('.error')
         end
     end
 
@@ -43,9 +41,13 @@ class PhotosController < ApplicationController
     end
 
     def destroy
-        Photo.destroy(params[:id])
-        flash[:success] = "Photo deleted"
-        redirect_to user_url(current_user.id)
+        photo = Photo.find(params[:id])
+        photo.destroy
+        if photo.destroyed?
+            redirect_to user_url(current_user.id), notice: t('.success')
+        else
+            render "edit", alert: t('.error')
+        end
     end
     protected
         def check_user_use_edit_new

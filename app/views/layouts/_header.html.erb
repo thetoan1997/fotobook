@@ -21,8 +21,8 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <% if user_signed_in? %>
-                        <% if @user.avatar.attached? %>
-                            <li><img class="avatar-user" src=<%= url_for(@user.avatar) %>></li>
+                        <% if current_user.avatar.attached? %>
+                            <li class="avatar-user-li"><img class="avatar-user" src=<%= url_for(current_user.avatar) %>></li>
                         <% end %>
                         <li><%= link_to current_user.lastname.titleize(), user_path(current_user.id) %></li>
                         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>

@@ -84,7 +84,8 @@
                                         color: #3C5999;
                                         font-weight: bold;  
                                         font-family: 'Roboto', sans-serif;
-                                        font-weight: 510;  
+                                        font-weight: 510;
+                                        line-height: 15px;  
                                     }
                                     .avatar-user{
                                         width: 30px;
@@ -111,6 +112,7 @@
                                     height: 15px;
                                     span{
                                         position: absolute;
+                                        color: #3C5999;
                                     }
                                     span:nth-child(2){
                                         position: absolute;
@@ -121,6 +123,7 @@
                                         right: 0;
                                         padding-right: 20px;
                                         font-family: 'Roboto', sans-serif;
+                                        color: #BDBDBD;
                                     }
                                 }
                             }
@@ -132,7 +135,6 @@
                     text-align: center;
                     bottom: 0;
                     span{
-                        display: inline-block;
                         margin-bottom: 0;
                         font-weight: normal;
                         text-align: center;
@@ -140,7 +142,8 @@
                         touch-action: manipulation;
                         cursor: pointer;
                         background-image: none;
-                        border: 1px solid transparent;
+                        border: 1px solid #BDBDBD;
+                        border-radius: 0 !important;
                         white-space: nowrap;
                         padding: 6px 12px;
                         font-size: 14px;
@@ -150,6 +153,9 @@
                         -moz-user-select: none;
                         -ms-user-select: none;
                         user-select: none;
+                        a{
+                            color: grey;
+                        }
                     }
                 }
             }

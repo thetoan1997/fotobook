@@ -4,8 +4,9 @@
 .container{
     background-color: #F8F8F8;
     .profile-user{
+        min-height: 1000px;
+        margin-top: 20px;
         height: auto;
-        margin: 0 auto;
         border: 1px solid #E0E0E0;
         border-radius: 6px;
         background-color: #fff;
@@ -57,6 +58,9 @@
                         top: 50%;
                         transform: translateY(-50%);
                     }
+                    .text-follow{
+                        color: orangered;
+                    }
                 }
                 .name{
                     font-size: 45px;
@@ -94,8 +98,12 @@
                     color: #fff;
                 }
             }
+            .pagination-in-user{
+                text-align: center;
+            }
             .posts-in-user{
                 margin: 20px;
+                padding-bottom: 100%; 
                 .show-edit-photo{
                     position: absolute;
                     z-index: 1;
