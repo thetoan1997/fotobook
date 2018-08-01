@@ -3,12 +3,12 @@ class HomeController < ApplicationController
     skip_before_action :authenticate_user!, only: [:index]
     PHOTO_LIMIT = 5
     def index
-        @photos = Photo.where(private: false)
+        @photos_guest = Photo.where(private: false)
                              .order(updated_at: :desc)
-                             .page(params[:page_photo_feeds])                   
-        @albums = Album.where(private: false)
+                             .page(params[:page_photo_guest])                   
+        @albums_guest = Album.where(private: false)
                              .order(updated_at: :desc)
-                             .page(params[:page_album_feeds])    
+                             .page(params[:page_album_guest])    
     end
 
     def show

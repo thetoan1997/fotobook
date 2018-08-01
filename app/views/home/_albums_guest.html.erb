@@ -1,0 +1,12 @@
+<div class="row">
+    <% @albums_guest.each do |album| %>
+        <%= render partial: "albums_post", locals: { album: album, type: "feeds" } %>
+        <% unless album.images[0].nil? %>
+            <%= render partial: "modal_album", 
+                    locals: { url: album.images, 
+                            id: "discover"+album.id.to_s } %>
+    
+        <% end %>
+    <% end %>
+</div>
+<%= paginate @albums_guest, param_name: "page_album_guest", remote: true %>

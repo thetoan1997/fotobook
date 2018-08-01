@@ -7,7 +7,7 @@
             <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
             <div id="option-photo-feeds"  class="content-post-photos tab-pane fade in active">
                 <div id="photos_feeds">
-                    <%= render 'photos_feeds' %>
+                    <%= render partial: 'photos_feeds' %>
                 </div>
             </div>
             <div id="option-album-feeds" class="content-post-albums row tab-pane fade">
@@ -36,13 +36,13 @@
             <p> feeds </p>
             <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
             <div id="option-photo-feeds"  class="content-post-photos tab-pane fade in active">
-                <div id="photos_feeds">
-                    <%= render 'photos_feeds', locals: {photos: photos_guest} %>
+                <div id="photos_guest">
+                    <%= render 'photos_guest' %>
                 </div>
             </div>
             <div id="option-album-feeds" class="content-post-albums row tab-pane fade">
-                <div id="albums_feeds">
-                    <%= render 'albums_feeds', locals: {albums: albums_guest} %>
+                <div id="albums_guest">
+                    <%= render 'albums_guest' %>
                 </div>
             </div>            
         </div>
