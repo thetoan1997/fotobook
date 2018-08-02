@@ -8,6 +8,7 @@
             <%= form_for([@user,@album], :html => { :multipart => true }) do |f| %>
                 <%= render partial: "albums/form_album", locals: {f: f, user: @user, album: @album, type: "edit"} %>           
             <% end %>
+            <button class="delete-one-photo" onclick="clearFileInputField('choose-file-field')" >Delete One</button>
         </div>
-    </div>    
+    </div>
 </div>

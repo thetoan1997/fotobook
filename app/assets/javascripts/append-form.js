@@ -20,7 +20,6 @@ $(document).on('turbolinks:load', function() {
     function readURLNewAlbum(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
-  
         reader.onload = function (e) {
           $('#img_prev'+i.toString()).attr('src', e.target.result);
           $('#img_prev'+i.toString()).addClass("up-index");
@@ -30,11 +29,17 @@ $(document).on('turbolinks:load', function() {
         reader.readAsDataURL(input.files[0]);
       }
     }
+    var divs = document.getElementsByClassName("choose-image");
+    $(".image-upload").change(function(){
+      divs[i].classList.remove('hidden');
+      readURLNewAlbum(this);
+    });
+
+
     var j=1;
     function readURLEditAlbum(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
-  
         reader.onload = function (e) {
           $('.al_prev'+j.toString()).attr('src', e.target.result);
           $('.al_prev'+j.toString()).addClass("up-index");
@@ -44,12 +49,7 @@ $(document).on('turbolinks:load', function() {
         reader.readAsDataURL(input.files[0]);
       }
     }
-    var divs = document.getElementsByClassName("choose-image");
     var divsAlbum = document.getElementsByClassName("choose-image-album");
-    $(".image-upload").change(function(){
-        divs[i].classList.remove('hidden');
-        readURLNewAlbum(this);
-    });
     $(".image-upload-album").change(function(){
       divsAlbum[j].classList.remove('hidden');
       readURLEditAlbum(this);
@@ -85,5 +85,7 @@ $(document).on('turbolinks:load', function() {
     }
     $("#photo-upload").change(function(){
       readURLPhoto(this);
-  });
+    });
+
+   
 });

@@ -101,9 +101,10 @@
 
                                 }
                                 .content-of-post{
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
                                     font-family: 'Roboto', sans-serif;
+                                    span{
+                                        overflow-wrap: break-word;
+                                    }
                                 }
                                 .likes-and-date-of-post{
                                     bottom: 0;

@@ -18,28 +18,28 @@
 <% if type == "new" %>
     <div class="image-div row">
         <%= f.fields_for :images do |p| %>
-            <div class="choose-image col-sm-3">
-                <div class="choose-file-field">
+            <div class="choose-image choose-image0 col-sm-3">
+                <div class="choose-file-field" id="choose-file-field-to-new0">
                     <span class="glyphicon glyphicon-plus plus"></span>
                     <%= p.file_field :image_link, class: "image-upload", id: "image-upload1" %>
                 </div>
                 <div class="choose-image-field">
                     <img id="img_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
-                    <span class="glyphicon glyphicon-remove remove remove1 hidden"></span>
+                    <span class="glyphicon glyphicon-remove remove remove0 hidden" onclick="clearFile(0)"></span>
                 </div>
             </div>
         <% end %>
         
         <% 25.times do |i| %>
             <%= f.fields_for :images do |p| %>
-                <div class="choose-image choose-image<%= i+1 %> hidden col-sm-3">
+                <div class="choose-image choose-image<%= i+1 %> hidden col-sm-3" id="choose-file-field-to-new<%= i+1 %>">
                     <div class="choose-file-field">
                         <span class="glyphicon glyphicon-plus plus"></span>
                         <%= p.file_field :image_link, class: "image-upload", id: "image-upload2" %>
                     </div>
                     <div class="choose-image-field">
                         <img id="img_prev<%= i+2 %>" width=300 height=300 src="#" class="img-thumbnail"/>
-                        <span class="glyphicon glyphicon-remove remove remove<%= i+2 %> hidden"></span>
+                        <span class="glyphicon glyphicon-remove remove remove<%= i+1 %> hidden" onclick="clearFileNewAlbum(<%= i+1 %>)"></span>
                     </div>
                 </div>
             <% end %>
@@ -68,23 +68,25 @@
                 <% end %>
             <% end %>
         </div>
-        <div class="choose-image-album mmm col-sm-3">
-            <div class="choose-file-field">
+        <div class="choose-image-album choose-image0 col-sm-3">
+            <div class="choose-file-field" id="choose-file-field-to-edit0">
                 <span class="glyphicon glyphicon-plus plus"></span>
                 <input class="image-upload-album" id="image-upload" type="file" name="album[images_attributes][0][image_link]">                </div>
             <div class="choose-image-field">
                 <img class="al_prev1 img-thumbnail" width=300 height=300 src="#" />
+                <span class="glyphicon glyphicon-remove remove remove-photo0" onclick="clearFile(0)"></span>
             </div>
         </div>
         
         <% 25.times do |i| %>
-            <div class="choose-image-album choose-image<%= i+1 %> hidden col-sm-3">
+            <div class="choose-image-album choose-image<%= i+1 %> hidden col-sm-3" id="choose-file-field-to-edit<%= i+1 %>">
                 <div class="choose-file-field">
                     <span class="glyphicon glyphicon-plus plus"></span>
-                    <input class="image-upload-album" id="image-upload" type="file" name="album[images_attributes][<%= i+1 %>][image_link]">                
+                    <input class="image-upload-album" id="image-upload file" type="file" name="album[images_attributes][<%= i+1 %>][image_link]">                
                 </div>
                 <div class="choose-image-field">
                     <img class="al_prev<%= i+2 %> img-thumbnail" width=300 height=300 src="#" />
+                    <span class="glyphicon glyphicon-remove remove remove-photo<%= i+1 %>" onclick="clearFileEditAlbum(<%= i+1 %>)"></span>
                 </div>
             </div>
         <% end %>
@@ -94,3 +96,5 @@
         <%= link_to "delete", user_album_path(user, album), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
     </div>
 <% end %>
+
+

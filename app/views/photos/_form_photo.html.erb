@@ -35,9 +35,9 @@
     <% end %>
 </div>
 <div class="submit-div col-sm-3">
-<%= f.submit "Save", class: "btn btn-success save-button" %>
+    <%= f.submit "Save", class: "btn btn-success save-button" %>
 
-<% if type == "edit" %>
-<%= link_to "delete", user_photo_path(@user, @photo), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
-<% end %>
+    <% if type == "edit" %>
+        <%= link_to "delete", user_photo_path(@user, @photo), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
+    <% end %>
 </div>

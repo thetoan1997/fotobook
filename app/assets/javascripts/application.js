@@ -20,3 +20,23 @@
 //= require_tree .
 
 
+function clearFileInputField(tagId) {
+
+    document.getElementById(tagId).innerHTML =
+
+        document.getElementById(tagId).innerHTML;
+
+}
+
+function clearFileNewAlbum(k){
+    var divOne = document.getElementsByClassName("choose-image"+k.toString());
+    divOne[0].classList.add("hidden");
+    clearFileInputField('choose-file-field-to-new'+k.toString());
+}
+
+function clearFileEditAlbum(k){
+    var divOne = document.getElementsByClassName("choose-image"+k.toString());
+    divOne[0].classList.add("hidden");
+    clearFileInputField('choose-file-field-to-edit'+k.toString());
+}
+
