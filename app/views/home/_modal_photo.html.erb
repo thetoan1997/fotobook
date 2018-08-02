@@ -1,18 +1,18 @@
 <div class="modal fade" id="myModal-<%= id %>" role="dialog">
     <div class="modal-dialog">      
-    <!-- Modal content-->
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><%= title %></h4>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><%= title %></h4>
+            </div>
+            <div class="modal-body">
+                <img class="picture-in-modal" src=<%= url %>>
+            </div>
+            <div class="modal-footer">
+                <span><%= description %></span>
+            </div>
         </div>
-        <div class="modal-body">
-            <img class="picture-in-modal" src=<%= url %>>
-        </div>
-        <div class="modal-footer">
-            <span><%= description %></span>
-        </div>
-    </div>
-    <!-- End Modal -->
+        <!-- End Modal -->
     </div>
 </div>

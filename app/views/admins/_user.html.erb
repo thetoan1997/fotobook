@@ -1,4 +1,4 @@
-<table >
+<table class="table table-striped">
   <tr>
     <th>Firstname</th>
     <th>Lastname</th> 
@@ -11,10 +11,10 @@
         <td><%= user.firstname %></td>
         <td><%= user.lastname %></td> 
         <td><%= user.email %></td>
-        <td> </td>
+        <td><%= user.last_sign_in_at %></td>
         <td>
-        <%= link_to 'Edit', class: "btn show-edit-photo" %>
-        <%= link_to 'Delete', class: "btn show-edit-photo " %>
+        <%= link_to 'Edit', {:controller => "users", :action => "edit", :id => user.id }, class: "btn btn-success show-edit-photo" %>
+        <%= link_to 'Delete', {:controller => "users", :action => "destroy", :id => user.id }, class: "btn btn-danger show-edit-photo " %>
         </td>
     </tr>
   <% end %>

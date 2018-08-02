@@ -11,6 +11,29 @@ class UsersController < ApplicationController
         @user_followers = get_followers(@user)
     end
 
+    def edit
+        @user = User.find(params[:id])
+    end
+    
+    def update
+        @user = User.find(params[:id])
+        @user.update( avatar: params[:user][:avatar],
+                      firstname: params[:user][:firstname], 
+                      lastname: params[:user][:lastname], 
+                      email: params[:user][:email])
+        redirect_to home_url(current_user.id)
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        if user.destroyed?
+            redirect_to home_url(current_user.id), notice: t('.success')
+        else
+            redirect_to home_url(current_user.id), alert: t('.error')
+        end
+    end
+
     private
         def check_user_get_photos
             return Photo.where("user_id = ?",params[:id])

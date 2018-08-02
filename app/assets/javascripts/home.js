@@ -1,8 +1,8 @@
 $(document).on('turbolinks:load', function() {
     
-    $(function(){
-        $('.pagination a').attr('data-remote', 'true')
-     });
+    // $(function(){
+    //     $('.pagination a').attr('data-remote', 'true')
+    //  });
     
     
     $('.show-albums').click(function () {
