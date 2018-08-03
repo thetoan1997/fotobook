@@ -1,23 +1,17 @@
 class PhotosController < ApplicationController
     before_action :check_user_use_edit_new, only: [:edit, :new]
-    
-    def index
-        @photos = Photo.paginate(page: params[:page], per_page: 10)
-
-    end
+    before_action :get_user, :only => [:new, :create, :edit, :update]
 
     def show
         @photo = Photo.find(params[:id])
     end 
 
     def new
-        @user = User.find(params[:user_id])
         @photo = @user.photos.new
         @photo.build_image
     end
 
     def create
-        @user = User.find(params[:user_id])
         @photo = @user.photos.create!(photo_params)
         if @photo.save
             redirect_to user_path(current_user.id), notice: t('.success')
@@ -27,12 +21,10 @@ class PhotosController < ApplicationController
     end
 
     def edit
-        @user = User.find(params[:user_id])
         @photo = @user.photos.find(params[:id])
     end
 
     def update
-        @user = User.find(params[:user_id])
         @photo = @user.photos.find(params[:id])
         @photo.update(title: params[:photo][:title], 
                       description: params[:photo][:description], 
@@ -57,6 +49,10 @@ class PhotosController < ApplicationController
         end
 
     private
+        def get_user
+            @user = User.find(params[:user_id])
+        end
+
         def photo_params
             params.require(:photo).permit(:title, 
                                           :description, 

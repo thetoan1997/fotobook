@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>                        
                 </button>
                 <% if user_signed_in? %>
-                    <% if current_user.admin? %>
+                    <% if check_is_admin?(current_user) %>
                         <%= link_to t('.logo-admin'), home_path(current_user.id), class: "navbar-brand" %>
                     <% else %>
                         <%= link_to t('.logo-user'), home_path(current_user.id), class: "navbar-brand" %>
@@ -21,11 +21,11 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <% if user_signed_in? %>
-                        <% if current_user.avatar.attached? %>
+                        <% if check_avatar_exist?(current_user) %>
                             <li class="avatar-user-li"><img class="avatar-user" src=<%= url_for(current_user.avatar) %>></li>
                         <% end %>
-                        <li><%= link_to current_user.lastname.titleize(), user_path(current_user.id) %></li>
-                        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+                        <li><%= link_to current_user.lastname.titleize(), user_path(id: current_user.id) %></li>
+                        <li><%= link_to t(".logout"), destroy_user_session_path, method: :delete %></li>
                     <% else %>
                         <li><%= link_to t(".login"), new_user_session_path %></li>
                     <% end %>

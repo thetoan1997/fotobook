@@ -2,15 +2,15 @@
     <% photos.each do |photo| %>
         <div class="col-lg-3 col-md-6">
             <div class="pictures-in-user">
-                <% unless photo.image.nil? %>
-                <% if photo.image.image_link.attached? %>
+                <% if photo.image.present? %>
+                <% if check_image_exist?(photo.image) %>
                     <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
                     <img class="picture-post" data-toggle="modal" data-target='#myModal-user<%= photo.id %>' src=<%= url_for(photo.image.image_link) %>>
                     <% if(photo.private == true) %>
                         <i class="fa fa-lock"></i>
                     <% end %>
                     <%= render partial: "home/modal_photo", 
-                                locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                locals: { url: (check_image_exist?(photo.image) ? url_for(photo.image.image_link) : photo.image.image_url), 
                                         title: photo.title, 
                                         description: photo.description, 
                                         id: "user"+photo.id.to_s } %>
@@ -21,7 +21,7 @@
         </div>
     <% end %>
 </div>
-<% if current_user.admin? %>
+<% if check_is_admin?(current_user) %>
     <div class="pagination-in-user">
         <%= paginate photos, param_name: "page_photo_admin", remote: true %>
     </div>

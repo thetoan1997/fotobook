@@ -1,4 +1,4 @@
-module UsersHelper
+module LayoutsHelper
     def check_avatar_exist? user
         user.avatar.attached?
     end

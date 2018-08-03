@@ -31,19 +31,57 @@
 
 en:
   devise:
-    fotobook-login: "Fotobook Login"
-    fotobook-signup: "Fotobook Signup"
+    fotobook-login: Fotobook Login
+    fotobook-signup: Fotobook Signup
   layouts:
     header:
-      login: "Login"
-      logo-user: "Fotobook"
-      logo-admin: "Fotobook Admin"
+      login: Login
+      logout: Logout
+      logo-user: Fotobook
+      logo-admin: Fotobook Admin
   views:
     pagination:
       previous: "Previous"
       next: "Next"
       truncate: "..."
+
+  admins:
+    option_manager:
+      photos: PHOTOS
+      albums: ALBUMS
+      users: USERS
+    user:
+      firstname: Firstname
+      lastname: Lastname
+      email: Email
+      last-login: Last Login
+      edit: Edit
+      delete: Delete
+    edit:
+      edit-user-profile: Edit User Profile
+  albums:
+    form_album:
+      save: Save
+      delete: Delete
+    edit:
+      edit-album: Edit Album
+    new:
+      new-album: New Album
+  home:
+    option_feeds_discover:
+      feeds: Feeds
+      discover: Discover
+    option_photo_album:
+      photo: PHOTO
+      album: ALBUM
   photos:
+    form_photo:
+      save: Save
+      delete: Delete
+    edit:
+      edit-photo: Edit Photo
+    new:
+      new-photo: New Photo
     create:
       success: Photo created successfully!
       error: There was a problem uploading the photo
@@ -60,6 +98,10 @@ en:
       error: There was a problem deleting the album
 
   users:
+    show:
+        edit-profile: Edit Profile
+        new-photo: New Photo
+        new-album: New Album
     destroy:
       success: User deleted successfully!
       error: There was a problem deleting the user

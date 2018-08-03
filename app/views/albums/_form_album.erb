@@ -49,10 +49,10 @@
 <% else %>
     <div class="image-div row">
         <div class="images-available">
-            <% unless album.images.nil? %> 
+            <% if album.images.present? %> 
                 <% album.images.each do |image| %>
                     <div class="image-available col-sm-3">
-                        <% if image.image_link.attached? %>
+                        <% if check_image_exist?(image) %>
                             <div class="choose-image-field">
                                 <img id="img_prev_available" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
                                 <%= link_to '<span class="glyphicon glyphicon-remove remove remove1"></span>'.html_safe,
@@ -92,8 +92,8 @@
         <% end %>
     </div>
     <div class="submit-div col-sm-3">
-        <%= f.submit "Save", class: "btn btn-success save-button" %>
-        <%= link_to "delete", user_album_path(user, album), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
+        <%= f.submit t('.save'), class: "btn btn-success save-button" %>
+        <%= link_to t('.delete'), user_album_path(user, album), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
     </div>
 <% end %>
 

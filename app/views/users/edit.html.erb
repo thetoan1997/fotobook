@@ -14,7 +14,7 @@
                         <div class="choose-file-field">
                             <%= f.file_field :avatar, id: "avatar-upload" %>
                         </div>
-                        <% if @user.avatar.attached? %>
+                        <% if check_avatar_exist?(@user) %>
                             <div class="choose-image-field">
                                 <img id="avatar_prev" width=300 height=300 src=<%= url_for(@user.avatar) %> class="img-thumbnail up-index"/>
                             </div>

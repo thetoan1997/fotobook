@@ -1,9 +1,9 @@
 <div class="row">
     <% photos_guest.each do |photo| %>
         <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
-        <% unless photo.image.nil? %>
+        <% if photo.image.present? %>
             <%= render partial: "modal_photo", 
-                    locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                    locals: { url: (check_image_exist?(photo.image) ? url_for(photo.image.image_link) : photo.image.image_url), 
                             title: photo.title, 
                             description: photo.description, 
                             id: "discover"+photo.id.to_s } %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+    before_action :get_user, :only => [:show, :edit, :update]
 
     def show
-        @user = User.find(params[:id])
         @photos = check_user_get_photos()
         @photos_public = check_user_get_photos_public()
         @albums = check_user_get_albums()
@@ -12,11 +12,10 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find(params[:id])
+
     end
     
     def update
-        @user = User.find(params[:id])
         @user.update( avatar: params[:user][:avatar],
                       firstname: params[:user][:firstname], 
                       lastname: params[:user][:lastname], 
@@ -35,22 +34,30 @@ class UsersController < ApplicationController
     end
 
     private
+        def get_user
+            @user = User.find(params[:id])
+        end
+
         def check_user_get_photos
             Photo.where(user_id: params[:id])
+                            .includes(:image)
                             .page(params[:user_photos])
         end
         
         def check_user_get_photos_public
             Photo.where(user_id: params[:id], private: false)
+                            .includes(:image)
         end
 
         def check_user_get_albums
             Album.where(user_id: params[:id])
+                            .includes(:images)
                             .page(params[:user_albums])
         end
         
         def check_user_get_albums_public
             Album.where(user_id: params[:id], private: false)
+                            .includes(:image)
         end
 
 

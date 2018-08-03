@@ -9,13 +9,13 @@
         <div class="row info-user">
             <div class="col-sm-3 content-avatar-user-info">
                 <div class="content-avatar">
-                    <% if @user.avatar.attached? %>
+                    <% if check_avatar_exist?(@user) %>
                         <img class="avatar-user" src=<%= url_for(@user.avatar) %>>
                     <% end %>
                 </div>
             </div>
             <div class="col-sm-9 content-info-user-info">
-                <div class="follow follow-span"><%= link_to "Edit Profile", edit_user_registration_path, class: "text-follow" %></div>
+                <div class="follow follow-span"><%= link_to t('.edit-profile'), edit_user_registration_path, class: "text-follow" %></div>
                 <p class="name"><b><%= (current_user.firstname+ " " + current_user.lastname).titleize() %></b></p>
                 <div class="account">
                     <ul class="nav nav-tabs">   
@@ -31,7 +31,7 @@
             <div id="menu-photos" class="tab-pane fade in active">
                 <% if current_user == @user %>
                     <div class="show-new-photo">
-                        <%= link_to "New Photo", new_user_photo_path(current_user.id), class: "btn new-photo-button" %>
+                        <%= link_to t('.new-photo'), new_user_photo_path(current_user.id), class: "btn new-photo-button" %>
                     </div>
                     <div id="photos-user">
                         <%= render partial: "photos_user", locals: { photos: @photos} %>
@@ -44,7 +44,7 @@
             <div id="menu-albums" class="tab-pane fade">
                 <% if current_user == @user %>    
                     <div class="show-new-photo">
-                        <%= link_to "New Album", new_user_album_path(current_user.id), class: "btn new-photo-button" %>
+                        <%= link_to t('.new-album'), new_user_album_path(current_user.id), class: "btn new-photo-button" %>
                     </div>
                     <div id="albums-user">
                         <%= render partial: "albums_user", locals: { albums: @albums } %>

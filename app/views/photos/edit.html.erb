@@ -2,11 +2,11 @@
     <%= render partial: "home/option_feeds_discover" %>
     <div class="col-sm-8 new-photo">
         <div class="title-new-photo">
-            <h3>Edit Photo</h3>
+            <h3><%= t('.edit-photo') %></h3>
         </div>
         <div class="row main-new-photo">
             <%= form_for([@user,@photo], :html => { :multipart => true }) do |f| %>
-                <%= render partial: "form_photo", locals: { type: "edit", f: f } %>
+                <%= render partial: "form_photo", locals: { type: "edit", f: f, user: @user, photo: @photo } %>
             <% end %>
         </div>
     </div>

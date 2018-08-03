@@ -3,8 +3,8 @@
         <div class="row this-post-row">
             <div class="this-post-picture col-sm-7">
                 <div class="contain-picture-post">
-                    <% unless photo.image.nil? %>
-                        <% if photo.image.image_link.attached? %>
+                    <% if photo.image.present? %>
+                        <% if check_image_exist?(photo.image) %>
                             <img class="picture-post" data-toggle="modal" data-target="#myModal-<%= type %><%= photo.id %>" src=<%= url_for(photo.image.image_link) %>>    
                         <% else %>
                             <img class="picture-post" data-toggle="modal" data-target="#myModal-<%= type %><%= photo.id %>" src=<%= photo.image.image_url %>>
