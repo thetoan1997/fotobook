@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     before_action :check_admin, only: [:show]
-    skip_before_action :authenticate_user!, only: [:index]
+    skip_before_action :authenticate_user!, only: :index
     PHOTO_LIMIT = 5
     def index
         @photos_guest = Photo.where(private: false)
@@ -16,13 +16,14 @@ class HomeController < ApplicationController
         @photos_feeds = Photo.where(user_id: @user.following_ids)
                              .order(updated_at: :desc)
                              .page(params[:page_photo_feeds])
-                         
+
         @albums_feeds = Album.where(user_id: @user.following_ids)
                              .order(updated_at: :desc)
                              .page(params[:page_album_feeds])
  
         @photos_discover = get_photos_recently_discover()
         @albums_discover = get_albums_recently_discover()
+
     end
 
     private
@@ -39,7 +40,7 @@ class HomeController < ApplicationController
 
         def check_admin
             if current_user.admin?
-                redirect_to admin_url(current_user.id)
+                redirect_to admin_path(current_user.id)
             end
         end
 

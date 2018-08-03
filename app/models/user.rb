@@ -19,15 +19,15 @@ class User < ApplicationRecord
                                     dependent: :destroy
     has_many :followers, through: :passive_user_followings, source: :follower
 
-    validates :firstname, presence: true, length: { maximum: 25 }
-    validates :lastname, presence: true, length: { maximum: 25 }
-    validates :email, presence: true, length: { maximum: 255 }
-    validates :encrypted_password, presence: true, length: { maximum: 64 }
-
-
     accepts_nested_attributes_for :active_user_followings
 
     has_one_attached :avatar
+
+    validates :firstname, presence: true, length: { maximum: NAME_MAX_LENGTH }
+    validates :lastname, presence: true, length: { maximum: NAME_MAX_LENGTH }
+    validates :email, presence: true, length: { maximum: EMAIL_MAX_LENGTH }
+    validates :encrypted_password, presence: true, length: { maximum: PASSWORD_MAX_LENGTH }
+    validates :avatar, presence: true
 
     protected
         def send_devise_notification(notification, *args)

@@ -63,6 +63,10 @@ en:
     destroy:
       success: User deleted successfully!
       error: There was a problem deleting the user
+  images:
+    destroy:
+      success: Image deleted successfully!
+      error: There was a problem deleting the image
 
 
 

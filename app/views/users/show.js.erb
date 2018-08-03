@@ -1,2 +1,2 @@
-$("#photos-user").html("<%= escape_javascript(render("photos_user")) %>");
-$("#albums-user").html("<%= escape_javascript(render("albums_user")) %>");
+$("#photos-user").html("<%= escape_javascript(render partial: "photos_user", locals: { photos: @photos}) %>");
+$("#albums-user").html("<%= escape_javascript(render partial: "albums_user", locals: { albums: @albums }) %>");

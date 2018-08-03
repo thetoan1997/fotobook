@@ -1,83 +1,47 @@
-<% if current_user.admin? %>
-    <div class="posts-in-user">
-        <% albums.each do |album| %>
-        <div class="col-lg-3 col-md-6 album-belongs-to-user">
-            <div class="album-picture">
-                <div class="square-fit picture-first">
-                    <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_album_path(user_id: album.user_id, id: album.id), class: "show-edit-photo" %>
-                    <% unless album.images[0].nil? %>
-                        <% if album.images[0].image_link.attached? %>
-                            <img class="picture-in-album" data-toggle="modal" data-target="#myModal-user<%= album.id %>" src=<%= url_for(album.images[0].image_link) %>>
-                        <% end %>
+<div class="posts-in-user">
+    <% albums.each do |album| %>
+    <div class="col-lg-3 col-md-6 album-belongs-to-user">
+        <div class="album-picture">
+            <div class="square-fit picture-first">
+                <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_album_path(user_id: album.user_id, id: album.id), class: "show-edit-photo" %>
+                <% unless album.images[0].nil? %>
+                    <% if album.images[0].image_link.attached? %>
+                        <img class="picture-in-album" data-toggle="modal" data-target="#myModal-user<%= album.id %>" src=<%= url_for(album.images[0].image_link) %>>
                     <% end %>
-                    
-                    <div class="title-hover">
-                        <p class="title"><span><%= album.images.size %></span> <br> PHOTOS</p>
-                    </div>
-                </div>
-                <div class="square-fit picture-second">
-                    <% unless album.images[1].nil? %>
-                        <% if album.images[1].image_link.attached? %>
-                            <img class="picture-in-album" src=<%= url_for(album.images[1].image_link) %>>
-                        <% end %>
-                    <% end %>
-                </div>
-                <div class="square-fit picture-third">
-                    <% unless album.images[2].nil? %>
-                        <% if album.images[2].image_link.attached? %>
-                            <img class="picture-in-album" src=<%= url_for(album.images[2].image_link) %>>
-                        <% end %>
-                    <% end %>
+                <% end %>
+                
+                <div class="title-hover">
+                    <p class="title"><span><%= album.images.size %></span> <br> PHOTOS</p>
                 </div>
             </div>
+            <div class="square-fit picture-second">
+                <% unless album.images[1].nil? %>
+                    <% if album.images[1].image_link.attached? %>
+                        <img class="picture-in-album" src=<%= url_for(album.images[1].image_link) %>>
+                    <% end %>
+                <% end %>
+            </div>
+            <div class="square-fit picture-third">
+                <% unless album.images[2].nil? %>
+                    <% if album.images[2].image_link.attached? %>
+                        <img class="picture-in-album" src=<%= url_for(album.images[2].image_link) %>>
+                    <% end %>
+                <% end %>
+            </div>
         </div>
-        <%= render partial: "home/modal_album", 
-                                locals: { url: album.images, 
-                                        id: "user"+album.id.to_s } %>
-        <% end %>
     </div>
+    <%= render partial: "home/modal_album", 
+                            locals: { url: album.images, 
+                                    id: "user"+album.id.to_s } %>
+    <% end %>
+</div>
+
+<% if current_user.admin? %>
     <div class="pagination-in-user">
-        <%= paginate albums, param_name: "page_album_admin"%>
+        <%= paginate albums, param_name: "page_album_admin", remote: true %>
     </div>
 <% else %>
-    <div class="posts-in-user">
-        <% @albums.each do |album| %>
-        <div class="col-lg-3 col-md-6 album-belongs-to-user">
-            <div class="album-picture">
-                <div class="square-fit picture-first">
-                    <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_album_path(user_id: album.user_id, id: album.id), class: "show-edit-photo" %>
-                    <% unless album.images[0].nil? %>
-                        <% if album.images[0].image_link.attached? %>
-                            <img class="picture-in-album" data-toggle="modal" data-target="#myModal-user<%= album.id %>" src=<%= url_for(album.images[0].image_link) %>>
-                        <% end %>
-                    <% end %>
-                    
-                    <div class="title-hover">
-                        <p class="title"><span><%= album.images.size %></span> <br> PHOTOS</p>
-                    </div>
-                </div>
-                <div class="square-fit picture-second">
-                    <% unless album.images[1].nil? %>
-                        <% if album.images[1].image_link.attached? %>
-                            <img class="picture-in-album" src=<%= url_for(album.images[1].image_link) %>>
-                        <% end %>
-                    <% end %>
-                </div>
-                <div class="square-fit picture-third">
-                    <% unless album.images[2].nil? %>
-                        <% if album.images[2].image_link.attached? %>
-                            <img class="picture-in-album" src=<%= url_for(album.images[2].image_link) %>>
-                        <% end %>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-        <%= render partial: "home/modal_album", 
-                                locals: { url: album.images, 
-                                        id: "user"+album.id.to_s } %>
-        <% end %>
-    </div>
     <div class="pagination-in-user">
-        <%= paginate @albums, param_name: "user_albums", remote: true %>
+        <%= paginate albums, param_name: "user_albums", remote: true %>
     </div>
 <% end %>

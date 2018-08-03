@@ -21,59 +21,57 @@ class UsersController < ApplicationController
                       firstname: params[:user][:firstname], 
                       lastname: params[:user][:lastname], 
                       email: params[:user][:email])
-        redirect_to home_url(current_user.id)
+        redirect_to home_path(current_user.id)
     end
 
     def destroy
         user = User.find(params[:id])
         user.destroy
         if user.destroyed?
-            redirect_to home_url(current_user.id), notice: t('.success')
+            redirect_to home_path(current_user.id), notice: t('.success')
         else
-            redirect_to home_url(current_user.id), alert: t('.error')
+            redirect_to home_path(current_user.id), alert: t('.error')
         end
     end
 
     private
         def check_user_get_photos
-            return Photo.where("user_id = ?",params[:id])
-                        .page(params[:user_photos])
+            Photo.where(user_id: params[:id])
+                            .page(params[:user_photos])
         end
         
         def check_user_get_photos_public
-            return Photo.where("user_id = :id AND private = :scope",
-                                    {id: params[:id], scope: false})
+            Photo.where(user_id: params[:id], private: false)
         end
 
         def check_user_get_albums
-            return Album.where("user_id = ?",params[:id])
-                        .page(params[:user_albums])
+            Album.where(user_id: params[:id])
+                            .page(params[:user_albums])
         end
         
         def check_user_get_albums_public
-            return Album.where("user_id = :id AND private = :scope",
-                                    {id: params[:id], scope: false})
+            Album.where(user_id: params[:id], private: false)
         end
 
 
         def get_photos(user)
-            return Photo.where("user_id = ?",params[:id])
+            Photo.where(user_id: params[:id])
         end
 
         def get_albums(user)
-            return user.albums
+            user.albums
         end
     
         def get_images
-            return Image.where(imageable_id: get_photos(params[:id]), imageable_type: "Photo")
+            Image.where(imageable_id: get_photos(params[:id]), imageable_type: "Photo")
         end
 
         def get_followings(user)
-            return user.followings
+            user.followings
         end
 
         def get_followers(user)
-            return user.followers
+            user.followers
         end    
 
 end

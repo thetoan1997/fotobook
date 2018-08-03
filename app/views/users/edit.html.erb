@@ -9,7 +9,7 @@
           <div class="form-signin">
 
             <div class="edit-profile"> 
-                <%= form_for(@user) do |f| %>
+                <%= form_for(@user, :html => { :multipart => true }) do |f| %>
                     <div class="choose-image">
                         <div class="choose-file-field">
                             <%= f.file_field :avatar, id: "avatar-upload" %>
@@ -32,7 +32,7 @@
 
                     <div class="field">
                     <%= f.label :lastname %><br />
-                    <%= f.text_field :lastname, autocomplete: "lastname", class: "form-control" %>
+                    <%= f.text_field :lastname, class: "form-control" %>
                     </div>
 
                     <div class="field">

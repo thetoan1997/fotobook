@@ -19,10 +19,10 @@
                 <p class="name"><b><%= (current_user.firstname+ " " + current_user.lastname).titleize() %></b></p>
                 <div class="account">
                     <ul class="nav nav-tabs">   
-                        <li class="active"><a data-toggle="tab" href="#menu-photos"><span class="count-in-user"><%= @user.photos.size %></span> PHOTOS</a></li>  
-                        <li><a data-toggle="tab" href="#menu-albums"><span class="count-in-user"><%= @user.albums.size %></span> ALBUMS</a></li> 
-                        <li><a data-toggle="tab" href="#menu-followings"><span class="count-in-user"><%= @user.followings.size %></span> FOLLOWINGS</a></li> 
-                        <li><a data-toggle="tab" href="#menu-followers"><span class="count-in-user"><%= @user.followers.size %></span> FOLLOWERS</a></li>
+                        <li class="active"><a data-toggle="tab" href='#menu-photos'><span class="count-in-user"><%= @user.photos.size %></span> PHOTOS</a></li>  
+                        <li><a data-toggle="tab" href='#menu-albums'><span class="count-in-user"><%= @user.albums.size %></span> ALBUMS</a></li> 
+                        <li><a data-toggle="tab" href='#menu-followings'><span class="count-in-user"><%= @user.followings.size %></span> FOLLOWINGS</a></li> 
+                        <li><a data-toggle="tab" href='#menu-followers'><span class="count-in-user"><%= @user.followers.size %></span> FOLLOWERS</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         <%= link_to "New Photo", new_user_photo_path(current_user.id), class: "btn new-photo-button" %>
                     </div>
                     <div id="photos-user">
-                        <%= render "photos_user" %>
+                        <%= render partial: "photos_user", locals: { photos: @photos} %>
                     </div>
                 <% else %>
                     <%= render partial: "photos_user", locals: { photos: @photos_public } %>
@@ -47,7 +47,7 @@
                         <%= link_to "New Album", new_user_album_path(current_user.id), class: "btn new-photo-button" %>
                     </div>
                     <div id="albums-user">
-                        <%= render "albums_user" %>
+                        <%= render partial: "albums_user", locals: { albums: @albums } %>
                     </div>
                 <% else %>
                     <%= render partial: "albums_user", locals: { albums: @albums_public } %>

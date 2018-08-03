@@ -1,56 +1,32 @@
-<% if current_user.admin? %>
-    <div class="posts-in-user">
-        <h3>adminnnnnnnn</h3>
-        <% photos.each do |photo| %>
-            <div class="col-lg-3 col-md-6">
-                <div class="pictures-in-user">
-                    <% unless photo.image.nil? %>
-                    <% if photo.image.image_link.attached? %>
-                        <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
-                        <img class="picture-post" data-toggle="modal" data-target="#myModal-user<%= photo.id %>" src=<%= url_for(photo.image.image_link) %>>
-                        <% if(photo.private == true) %>
-                            <i class="fa fa-lock"></i>
-                        <% end %>
-                        <%= render partial: "home/modal_photo", 
-                                    locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
-                                            title: photo.title, 
-                                            description: photo.description, 
-                                            id: "user"+photo.id.to_s } %>
+<div class="posts-in-user">
+    <% photos.each do |photo| %>
+        <div class="col-lg-3 col-md-6">
+            <div class="pictures-in-user">
+                <% unless photo.image.nil? %>
+                <% if photo.image.image_link.attached? %>
+                    <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
+                    <img class="picture-post" data-toggle="modal" data-target='#myModal-user<%= photo.id %>' src=<%= url_for(photo.image.image_link) %>>
+                    <% if(photo.private == true) %>
+                        <i class="fa fa-lock"></i>
                     <% end %>
-                    <% end %>
-                </div>
-                <p class="title-in-picture-user"><%= photo.title %></p>
+                    <%= render partial: "home/modal_photo", 
+                                locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                        title: photo.title, 
+                                        description: photo.description, 
+                                        id: "user"+photo.id.to_s } %>
+                <% end %>
+                <% end %>
             </div>
-        <% end %>
-    </div>
+            <p class="title-in-picture-user"><%= photo.title %></p>
+        </div>
+    <% end %>
+</div>
+<% if current_user.admin? %>
     <div class="pagination-in-user">
-        <%= paginate photos, param_name: "page_photo_admin" %>
+        <%= paginate photos, param_name: "page_photo_admin", remote: true %>
     </div>
 <% else %>
-    <div class="posts-in-user">
-        <% @photos.each do |photo| %>
-            <div class="col-lg-3 col-md-6">
-                <div class="pictures-in-user">
-                    <% unless photo.image.nil? %>
-                    <% if photo.image.image_link.attached? %>
-                        <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
-                        <img class="picture-post" data-toggle="modal" data-target='#myModal-user<%= photo.id %>' src=<%= url_for(photo.image.image_link) %>>
-                        <% if(photo.private == true) %>
-                            <i class="fa fa-lock"></i>
-                        <% end %>
-                        <%= render partial: "home/modal_photo", 
-                                    locals: { url: (photo.image.image_link.attached? ? url_for(photo.image.image_link) : photo.image.image_url), 
-                                            title: photo.title, 
-                                            description: photo.description, 
-                                            id: "user"+photo.id.to_s } %>
-                    <% end %>
-                    <% end %>
-                </div>
-                <p class="title-in-picture-user"><%= photo.title %></p>
-            </div>
-        <% end %>
-    </div>
     <div class="pagination-in-user">
-        <%= paginate @photos, param_name: "user_photos", remote: true %>
+        <%= paginate photos, param_name: "user_photos", remote: true %>
     </div>
-<% end %> 
+<% end %>

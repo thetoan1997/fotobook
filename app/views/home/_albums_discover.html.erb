@@ -1,5 +1,5 @@
 <div class="row">
-    <% @albums_discover.each do |album| %>
+    <% albums_discover.each do |album| %>
         <%= render partial: "albums_post", locals: { album: album, type: "discover" } %>
         <% unless album.images[0].nil? %>
             <%= render partial: "modal_album", 
@@ -9,4 +9,4 @@
         <% end %>
     <% end %>
 </div>
-<%= paginate @albums_discover, param_name: "page_album_discover", remote: true %>
+<%= paginate albums_discover, param_name: "page_album_discover", remote: true %>
