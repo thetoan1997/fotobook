@@ -262,6 +262,16 @@
                 } 
             }
         }
+        .fa-lock{
+            z-index: 4;
+            background-color: #fff;
+            position: absolute;
+            border-radius: 50%;
+            width: 14px;
+            text-align: center;
+            bottom: 2px;
+            right: 2px; 
+        }
     }
     .picture-first{
         z-index: 3;

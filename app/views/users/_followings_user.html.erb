@@ -19,7 +19,7 @@
                 </div>
             </div>
             <%= form_for(@user.active_user_followings.find_by(followed_id: user.id),
-                    html: { method: :delete }, remote: true) do |f| %>
+                    html: { method: :delete }) do |f| %>
                 <%= f.submit "unfollow", class: "follow follow-span" %>
             <% end %>
         </div>

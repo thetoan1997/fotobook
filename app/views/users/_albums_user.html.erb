@@ -7,6 +7,9 @@
                 <% if album.images[0].present? %>
                     <% if check_image_exist?(album.images[0]) %>
                         <img class="picture-in-album" data-toggle="modal" data-target="#myModal-user<%= album.id %>" src=<%= url_for(album.images[0].image_link) %>>
+                        <% if(album.private == true) %>
+                            <i class="fa fa-lock"></i>
+                        <% end %>
                     <% end %>
                 <% end %>
                 
