@@ -1,3 +1,8 @@
+<% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+          <%= value %>
+    </div>
+<% end %>
 <div class="container row">
     <%= render partial: "option_manager" %>
     <div class="col-md-8 profile-user">

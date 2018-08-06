@@ -99,7 +99,6 @@
                                 .title-of-post{
                                     margin: 8px 0;
                                     font-family: 'Roboto', sans-serif;
-
                                 }
                                 .content-of-post{
                                     font-family: 'Roboto', sans-serif;
@@ -177,10 +176,17 @@
         }
     }
 }
-
 @media only screen and (max-width: 2000px) {
     .this-post .this-post-row .this-post-info{
         height: 19.5em;
+    }
+    .this-post .this-post-row .this-post-info .likes-and-date-of-post{
+        position: absolute ;
+    }   
+}
+@media only screen and (max-width: 1350px) {
+    .this-post .this-post-row .this-post-info{
+        height: 15em;
     }
     .this-post .this-post-row .this-post-info .likes-and-date-of-post{
         position: absolute ;

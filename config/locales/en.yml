@@ -47,9 +47,9 @@ en:
 
   admins:
     option_manager:
-      photos: PHOTOS
-      albums: ALBUMS
-      users: USERS
+      photos: Manage Photos
+      albums: Manage Albums
+      users: Manage Users
     user:
       firstname: Firstname
       lastname: Lastname

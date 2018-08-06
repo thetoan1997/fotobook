@@ -56,7 +56,6 @@
     border-color: transparent;
 }
 .navbar-collapse{
-    height: 100% !important;
     .navbar-nav{
         height: 42px;
         display: flex;
@@ -89,4 +88,16 @@
 }
 .dropdown-menu li a:hover {
     background-color: red !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-collapse{
+        background-color: #3C5999;
+        position: absolute;
+        width: 100%;
+    }
+    .navbar .container-fluid{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
