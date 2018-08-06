@@ -49,9 +49,15 @@
                                 }
                             }
                         }
+                        .field, .actions{
+                            margin-top: 10px;
+                        }
                     }
                     .edit-password{
                         margin-top: 40px;
+                        .field, .actions{
+                            margin-top: 10px;
+                        }
                     }
                 }
             }

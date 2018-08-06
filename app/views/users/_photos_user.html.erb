@@ -3,18 +3,18 @@
         <div class="col-lg-3 col-md-6">
             <div class="pictures-in-user">
                 <% if photo.image.present? %>
-                <% if check_image_exist?(photo.image) %>
-                    <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
-                    <img class="picture-post" data-toggle="modal" data-target='#myModal-user<%= photo.id %>' src=<%= url_for(photo.image.image_link) %>>
-                    <% if(photo.private == true) %>
-                        <i class="fa fa-lock"></i>
+                    <% if check_image_exist?(photo.image) %>
+                        <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_user_photo_path(user_id: photo.user_id, id: photo.id), class: "show-edit-photo" %>                
+                        <img class="picture-post" data-toggle="modal" data-target='#myModal-user<%= photo.id %>' src=<%= url_for(photo.image.image_link) %>>
+                        <% if(photo.private == true) %>
+                            <i class="fa fa-lock"></i>
+                        <% end %>
+                        <%= render partial: "home/modal_photo", 
+                                    locals: { url: (check_image_exist?(photo.image) ? url_for(photo.image.image_link) : photo.image.image_url), 
+                                            title: photo.title, 
+                                            description: photo.description, 
+                                            id: "user"+photo.id.to_s } %>
                     <% end %>
-                    <%= render partial: "home/modal_photo", 
-                                locals: { url: (check_image_exist?(photo.image) ? url_for(photo.image.image_link) : photo.image.image_url), 
-                                        title: photo.title, 
-                                        description: photo.description, 
-                                        id: "user"+photo.id.to_s } %>
-                <% end %>
                 <% end %>
             </div>
             <p class="title-in-picture-user"><%= photo.title %></p>

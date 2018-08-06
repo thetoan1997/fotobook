@@ -9,9 +9,10 @@
           <div class="form-signin">
 
             <div class="edit-profile"> 
-                <%= form_for(@user, :html => { :multipart => true }) do |f| %>
+                <%= form_for(@user) do |f| %>
                     <div class="choose-image">
                         <div class="choose-file-field">
+                            <%= f.label :avatar %>
                             <%= f.file_field :avatar, id: "avatar-upload" %>
                         </div>
                         <% if check_avatar_exist?(@user) %>
@@ -38,6 +39,11 @@
                     <div class="field">
                     <%= f.label :email %><br />
                     <%= f.email_field :email, autocomplete: "email" %>
+                    </div>
+
+                    <div class="field">
+                        <%= f.label :password %><br />
+                        <%= f.password_field :password, autocomplete: "off" %>
                     </div>
 
                     <div class="actions">

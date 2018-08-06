@@ -27,7 +27,6 @@ class User < ApplicationRecord
     validates :lastname, presence: true, length: { maximum: NAME_MAX_LENGTH }
     validates :email, presence: true, length: { maximum: EMAIL_MAX_LENGTH }
     validates :encrypted_password, presence: true, length: { maximum: PASSWORD_MAX_LENGTH }
-    validates :avatar, presence: true
 
     protected
         def send_devise_notification(notification, *args)

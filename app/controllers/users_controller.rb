@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :get_user, :only => [:show, :edit, :update]
+    before_action :get_user, only: [:show, :edit, :update]
 
     def show
         @photos = check_user_get_photos()
@@ -16,10 +16,13 @@ class UsersController < ApplicationController
     end
     
     def update
-        @user.update( avatar: params[:user][:avatar],
-                      firstname: params[:user][:firstname], 
+        @user.update( firstname: params[:user][:firstname], 
                       lastname: params[:user][:lastname], 
-                      email: params[:user][:email])
+                      email: params[:user][:email],
+                      password: params[:user][:password])
+        if params[:user][:avatar].present?
+            @user.avatar.attach(params[:user][:avatar])
+        end
         redirect_to home_path(current_user.id)
     end
 
@@ -27,9 +30,9 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         user.destroy
         if user.destroyed?
-            redirect_to home_path(current_user.id), notice: t('.success')
+            redirect_to admin_path(current_user.id), notice: t('.success')
         else
-            redirect_to home_path(current_user.id), alert: t('.error')
+            redirect_to admin_path(current_user.id), alert: t('.error')
         end
     end
 
