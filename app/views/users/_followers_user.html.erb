@@ -1,0 +1,33 @@
+<div class="posts-in-user">
+    <% users.each do |user| %>
+        <div class="col-lg-3 col-md-6 following-of-user">
+            <div class="user-following">
+                <div class="avatar-user-following">
+                    <img class="avatar-user" src=<%= user.avatar_link %>>
+                </div>
+                <div class="username-user-following">
+                    <span><%= user.username %></span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 photos-user-following">
+                        <span><%= user.photos.size %></span><br>
+                        <span>PHOTOS</span>
+                    </div>
+                    <div class="col-sm-6 albums-user-following">
+                        <span><%= user.albums.size %></span><br>
+                        <span>ALBUMS</span>
+                    </div>
+                </div>
+                <% if current.followings.include?(user) %>
+                    <div class="follow following"><span class="follow-span">Following</span></div>
+                <% else %>
+                    <%= form_for(current_user.active_user_followings.build, remote: true) do |f| %>
+                        <div><%= hidden_field_tag :followed_id, user.id %></div>
+                        <%= f.submit "Follow", class: "follow following" %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>
+    

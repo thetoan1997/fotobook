@@ -1,0 +1,40 @@
+<% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+          <%= value %>
+    </div>
+<% end %>
+<div class="container">
+    <div class="row content tab-content">
+        <%= render partial: "option_feeds_discover" %>
+        <div id="option-feeds" class="col-md-8 main-content-feeds tab-pane fade in active tab-content">
+            <%= render partial: "option_photo_album", locals: { type: "feeds" } %>       
+            <div id="option-photo-feeds"  class="content-post-photos tab-pane fade in active">
+                <div id="photos_feeds">
+                    <%= render partial: 'photos_feeds', locals: {photos_feeds: @photos_feeds} %>
+                </div>
+            </div>
+            <div id="option-album-feeds" class="content-post-albums row tab-pane fade">
+                <div id="albums_feeds">
+                    <%= render partial: 'albums_feeds', locals: {albums_feeds: @albums_feeds} %>
+                </div>
+            </div>            
+        </div>
+
+        <div id="option-discover" class="col-md-8 main-content-discover tab-pane fade tab-content">
+            <%= render partial: "option_photo_album", locals: { type: "discover" } %>
+            <div id="option-photo-discover" class="content-post-photos row tab-pane fade in active">
+                <div id="photos_discover">
+                    <%= render partial: 'photos_discover', locals: {photos_discover: @photos_discover} %>
+                </div>
+            </div>
+            <div id="option-album-discover" class="content-post-albums row tab-pane fade">
+                <div id="albums_discover">
+                    <%= render partial: 'albums_discover', locals: {albums_discover: @albums_discover} %>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-2 option-ads"></div>
+    </div>
+</div>
+

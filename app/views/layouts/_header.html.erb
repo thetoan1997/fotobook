@@ -1,0 +1,43 @@
+<div class="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+                </button>
+                <% if user_signed_in? %>
+                    <% if check_is_admin?(current_user) %>
+                        <%= link_to t('.logo-admin'), home_path(current_user.id), class: "navbar-brand" %>
+                    <% else %>
+                        <%= link_to t('.logo-user'), home_path(current_user.id), class: "navbar-brand" %>
+                    <% end %>
+                <% else %>
+                    <%= link_to t(".logo-user"), home_index_path, class: "navbar-brand" %>
+                <% end %>
+
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if user_signed_in? %>
+                        <% if check_avatar_exist?(current_user) %>
+                            <li class="avatar-user-li"><img class="avatar-user" src=<%= url_for(current_user.avatar) %>></li>
+                        <% end %>
+                        <li><%= link_to current_user.lastname.titleize(), user_path(id: current_user.id) %></li>
+                        <li><%= link_to t(".logout"), destroy_user_session_path, method: :delete %></li>
+                    <% else %>
+                        <li><%= link_to t(".login"), new_user_session_path %></li>
+                    <% end %>
+                </ul>
+                <div class="col-lg-6 col-sm-6">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

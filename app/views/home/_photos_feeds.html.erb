@@ -1,0 +1,11 @@
+<div class="row">    
+    <% photos_feeds.each do |photo| %>
+        <%= render partial: "photos_post", locals: { photo: photo, type: "feeds" } %>
+        <%= render partial: "modal_photo", 
+                locals: { url: (check_image_exist?(photo.image) ? url_for(photo.image.image_link) : photo.image.image_url), 
+                        title: photo.title, 
+                        description: photo.description, 
+                        id: "feeds"+photo.id.to_s } %>
+    <% end %>
+</div>
+<%= paginate photos_feeds, param_name: "page_photo_feeds", remote: true %> 

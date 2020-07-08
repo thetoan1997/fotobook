@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-sm-6 title-mode-div">
+        <div class="title-title-mode-div">
+        <%= f.label :title %><br>
+        <%= f.text_field :title %><br>
+        </div>
+        <div class="mode-title-mode-div">
+        <%= f.label :sharing_mode %><br>
+        <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
+        </div>
+    </div>
+    <div class="col-sm-6 description-div">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+</div>
+<% if type == "new" %>
+    <div class="image-div row">
+        <%= f.fields_for :images do |p| %>
+            <div class="choose-image choose-image0 col-sm-3">
+                <div class="choose-file-field" id="choose-file-field-to-new0">
+                    <span class="glyphicon glyphicon-plus plus"></span>
+                    <%= p.file_field :image_link, class: "image-upload", id: "image-upload1" %>
+                </div>
+                <div class="choose-image-field">
+                    <img id="img_prev1" width=300 height=300 src="#" class="img-thumbnail"/>
+                    <span class="glyphicon glyphicon-remove remove remove0 hidden" onclick="clearFile(0)"></span>
+                </div>
+            </div>
+        <% end %>
+        
+        <% 25.times do |i| %>
+            <%= f.fields_for :images do |p| %>
+                <div class="choose-image choose-image<%= i+1 %> hidden col-sm-3" id="choose-file-field-to-new<%= i+1 %>">
+                    <div class="choose-file-field">
+                        <span class="glyphicon glyphicon-plus plus"></span>
+                        <%= p.file_field :image_link, class: "image-upload", id: "image-upload2" %>
+                    </div>
+                    <div class="choose-image-field">
+                        <img id="img_prev<%= i+2 %>" width=300 height=300 src="#" class="img-thumbnail"/>
+                        <span class="glyphicon glyphicon-remove remove remove<%= i+1 %> hidden" onclick="clearFileNewAlbum(<%= i+1 %>)"></span>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+    <%= f.submit "Save" %>
+<% else %>
+    <div class="image-div row">
+        <div class="images-available">
+            <% if album.images.present? %> 
+                <% album.images.each do |image| %>
+                    <div class="image-available col-sm-3">
+                        <% if check_image_exist?(image) %>
+                            <div class="choose-image-field">
+                                <img id="img_prev_available" width=300 height=300 src=<%= url_for(image.image_link) %> class="img-thumbnail up-index"/>
+                                <%= link_to '<span class="glyphicon glyphicon-remove remove remove1"></span>'.html_safe,
+                                    image_path(image), method: :delete, data: { confirm: 'Are you sure?'} %>
+                            </div>
+                        <% else %>
+                            <div class="choose-image-field">
+                                <img id="img_prev_available" width=300 height=300 src="#" class="img-thumbnail"/>
+                                <span class="glyphicon glyphicon-remove remove remove1"></span>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="choose-image-album choose-image0 col-sm-3">
+            <div class="choose-file-field" id="choose-file-field-to-edit0">
+                <span class="glyphicon glyphicon-plus plus"></span>
+                <input class="image-upload-album" id="image-upload" type="file" name="album[images_attributes][0][image_link]">                </div>
+            <div class="choose-image-field">
+                <img class="al_prev1 img-thumbnail" width=300 height=300 src="#" />
+                <span class="glyphicon glyphicon-remove remove remove-photo0" onclick="clearFile(0)"></span>
+            </div>
+        </div>
+        
+        <% 25.times do |i| %>
+            <div class="choose-image-album choose-image<%= i+1 %> hidden col-sm-3" id="choose-file-field-to-edit<%= i+1 %>">
+                <div class="choose-file-field">
+                    <span class="glyphicon glyphicon-plus plus"></span>
+                    <input class="image-upload-album" id="image-upload file" type="file" name="album[images_attributes][<%= i+1 %>][image_link]">                
+                </div>
+                <div class="choose-image-field">
+                    <img class="al_prev<%= i+2 %> img-thumbnail" width=300 height=300 src="#" />
+                    <span class="glyphicon glyphicon-remove remove remove-photo<%= i+1 %>" onclick="clearFileEditAlbum(<%= i+1 %>)"></span>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <div class="submit-div col-sm-3">
+        <%= f.submit t('.save'), class: "btn btn-success save-button" %>
+        <%= link_to t('.delete'), user_album_path(user, album), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
+    </div>
+<% end %>
+
+

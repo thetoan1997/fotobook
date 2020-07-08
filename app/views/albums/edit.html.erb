@@ -1,0 +1,13 @@
+<div class="container row">
+    <%= render partial: "home/option_feeds_discover" %>
+    <div class="col-sm-8 new-album">
+        <div class="title-new-photo">
+            <h3><%= t('.edit-album') %></h3>
+        </div>
+        <div class="row main-new-photo">
+            <%= form_for([@user,@album], :html => { :multipart => true }) do |f| %>
+                <%= render partial: "albums/form_album", locals: {f: f, user: @user, album: @album, type: "edit"} %>           
+            <% end %>
+        </div>
+    </div>
+</div>

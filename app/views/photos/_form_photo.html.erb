@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-sm-6 title-mode-div">
+        <div class="title-title-mode-div">
+            <%= f.label :title %><br>
+            <%= f.text_field :title %><br>
+        </div>
+        <div class="mode-title-mode-div">
+            <%= f.label :sharing_mode %><br>
+            <%= f.select(:private, options_for_select([['public', 0], ['private', 1]])) %>
+        </div>
+    </div>
+    <div class="col-sm-6 description-div">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+</div>
+<div class="image-div-photo row">
+    <%= f.fields_for :image do |p| %>
+        <div class="choose-image col-sm-3">
+            <div class="choose-file-field">
+                <span class="glyphicon glyphicon-plus"></span>
+                <%= p.file_field :image_link, data: { max_file_size: 5.megabytes }, class:"photo-upload", id: "photo-upload" %>
+            </div>
+            <% if check_image_exist?(photo.image) %>
+                <div class="choose-image-field">
+                    <img id="img_prev" width=300 height=300 src=<%= url_for(photo.image.image_link) %> class="img-thumbnail up-index"/>
+                </div>
+            <% else %>
+                <div class="choose-image-field">
+                    <img id="img_prev" width=300 height=300 src="#" class="img-thumbnail"/>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+<div class="submit-div col-sm-3">
+    <%= f.submit t('.save'), class: "btn btn-success save-button" %>
+
+    <% if type == "edit" %>
+        <%= link_to t('.delete'), user_photo_path(user, photo), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger delete-button" %>
+    <% end %>
+</div>

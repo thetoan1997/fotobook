@@ -1,0 +1,93 @@
+// Place all the styles related to the Photos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.new-photo{
+    background-color: #ffffff;
+    min-height: 1000px !important;
+    .title-new-photo{
+        border-bottom: 2px solid #E0E0E0;
+    }
+    .main-new-photo{
+        margin-top: 15px;
+        margin-left: 0;
+        margin-right: 0;
+        .row{
+            margin: 0;
+        }
+        .submit{
+            margin-top: 20px;
+        }
+        .title-mode-div{
+            padding-left: 0;
+            .title-title-mode-div{
+                width: 100%;
+                #photo_title{
+                    width: 100%;
+                }
+            }
+            .mode-title-mode-div{
+                margin-top: 20px;
+            }
+        }
+        .description-div{
+            padding-right: 0;
+        }
+        #photo_description{
+            width: 100%;
+            min-height: 150px;
+        }
+        .image-div-photo{
+            margin-top: 20px;
+            .choose-image{
+                position: relative;
+                padding: 0;
+                span{
+                    font-size: 50px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);                  
+                }
+                div{
+                    width: 100%;
+                    padding-bottom: 100%;
+                
+                }
+                .choose-file-field{
+                    position: absolute;
+                    .photo-upload{
+                        position: absolute;
+                        z-index: 2;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        background-color: #f8f8f8;
+                    }
+                }
+                .choose-image-field{
+                    position: relative; 
+                    border: 2px dashed black;
+                    .img-thumbnail{
+                        padding: 0;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1;
+                        background: transparent;
+                    }
+                    .up-index{
+                        z-index: 3;
+                    }
+                }
+            }
+        }
+        .submit-div{
+            padding: 0;
+            margin-top: 15px;
+            .delete-button{
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+}
